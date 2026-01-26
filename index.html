@@ -1785,7 +1785,7 @@
                 const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
                     ? 'http://localhost:3000/api/signup'
                     : (window.location.hostname === 'savvy.io' || window.location.hostname === 'www.savvy.io')
-                    ? 'https://savvy-api-1kov.onrender.com'  // Update to your Render URL or api.savvy.io
+                    ? 'https://savvy-api-1kov.onrender.com/api/signup'  // Your Render URL
                     : 'https://savvy-api.onrender.com/api/signup';  // Default Render URL
 
                 const response = await fetch(apiUrl, {
