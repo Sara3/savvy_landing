@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savvy — Stop Losing Money You Already Earned</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #fafafa;
+            --bg-white: #ffffff;
+            --bg-subtle: #f5f5f5;
+            --bg-accent-light: #ecfdf5;
+            --text-primary: #18181b;
+            --text-secondary: #71717a;
+            --text-muted: #a1a1aa;
+            --accent: #10b981;
+            --accent-dark: #059669;
+            --accent-light: #d1fae5;
+            --blue: #3b82f6;
+            --blue-light: #dbeafe;
+            --purple: #8b5cf6;
+            --purple-light: #ede9fe;
+            --orange: #f97316;
+            --orange-light: #ffedd5;
+            --pink: #ec4899;
+            --pink-light: #fce7f3;
+            --red: #ef4444;
+            --red-light: #fee2e2;
+            --border: #e4e4e7;
+            --border-light: #f4f4f5;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.05);
+            --shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 28px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .serif {
+            font-family: 'Instrument Serif', Georgia, serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(250, 250, 250, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--accent);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 18px;
+            height: 18px;
+            color: white;
+        }
+
+        .nav-cta {
+            background: var(--text-primary);
+            color: white;
+            padding: 0.6rem 1.25rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: #3f3f46;
+            transform: scale(1.02);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 8rem 2rem 3rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-light);
+            color: var(--accent-dark);
+            padding: 0.4rem 0.9rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .hero h1 .serif {
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 520px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 0.9rem 1.75rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .hero-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        /* Dashboard Section */
+        .dashboard-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 2rem 4rem;
+        }
+
+        .dashboard-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .dashboard-header {
+            padding: 1rem 1.5rem;
+            background: linear-gradient(to right, #fafafa, #f5f5f5);
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dashboard-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .dashboard-dot.red { background: #fca5a5; }
+        .dashboard-dot.yellow { background: #fcd34d; }
+        .dashboard-dot.green { background: #86efac; }
+
+        .dashboard-title {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-left: 0.5rem;
+        }
+
+        .dashboard-body {
+            padding: 1.5rem;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--bg-subtle);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        .stat-value.green { color: var(--accent); }
+
+        .stat-meta {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .money-item {
+            background: var(--bg-subtle);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .money-item:hover {
+            background: var(--bg-white);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .money-item.alert {
+            background: linear-gradient(135deg, #fef2f2, #fee2e2);
+            border: 1px solid #fecaca;
+        }
+
+        .money-item.highlight {
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            border: 1px solid #bfdbfe;
+        }
+
+        .item-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .item-icon.brand {
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .item-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .item-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .item-detail {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .item-badge {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.25rem 0.6rem;
+            border-radius: 100px;
+        }
+
+        .item-badge.warning { background: #fef3c7; color: #b45309; }
+        .item-badge.danger { background: #fee2e2; color: #dc2626; }
+        .item-badge.info { background: #dbeafe; color: #2563eb; }
+        .item-badge.success { background: #d1fae5; color: #059669; }
+
+        .item-value {
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* ============================================
+           LEAKS SECTION - Fading Cards + Counter
+           ============================================ */
+        .leaks-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, #18181b 0%, #27272a 100%);
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .leaks-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .leaks-header {
+            margin-bottom: 3rem;
+        }
+
+        .leaks-header h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .leaks-header h2 .serif {
+            font-weight: 400;
+            font-style: italic;
+            color: #f87171;
+        }
+
+        .leaks-header p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Fading Cards Grid */
+        .leak-cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .leak-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leak-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(248,113,113,0.1) 50%, transparent 100%);
+            transform: translateX(-100%);
+            animation: fadeSwipe 3s ease-in-out infinite;
+        }
+
+        .leak-card:nth-child(1)::before { animation-delay: 0s; }
+        .leak-card:nth-child(2)::before { animation-delay: 0.6s; }
+        .leak-card:nth-child(3)::before { animation-delay: 1.2s; }
+        .leak-card:nth-child(4)::before { animation-delay: 1.8s; }
+        .leak-card:nth-child(5)::before { animation-delay: 2.4s; }
+
+        @keyframes fadeSwipe {
+            0% { transform: translateX(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
+
+        .leak-card-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .leak-card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .leak-card-content {
+            text-align: left;
+        }
+
+        .leak-card-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: white;
+            margin-bottom: 0.15rem;
+        }
+
+        .leak-card-desc {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .leak-card-amount {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f87171;
+            position: relative;
+        }
+
+        /* Floating away particles */
+        .leak-card-amount::after {
+            content: '$';
+            position: absolute;
+            right: -20px;
+            top: 0;
+            font-size: 0.75rem;
+            color: #f87171;
+            opacity: 0;
+            animation: floatAway 3s ease-out infinite;
+        }
+
+        .leak-card:nth-child(1) .leak-card-amount::after { animation-delay: 0s; }
+        .leak-card:nth-child(2) .leak-card-amount::after { animation-delay: 0.6s; }
+        .leak-card:nth-child(3) .leak-card-amount::after { animation-delay: 1.2s; }
+        .leak-card:nth-child(4) .leak-card-amount::after { animation-delay: 1.8s; }
+        .leak-card:nth-child(5) .leak-card-amount::after { animation-delay: 2.4s; }
+
+        @keyframes floatAway {
+            0% { opacity: 0; transform: translate(0, 0); }
+            20% { opacity: 0.8; }
+            100% { opacity: 0; transform: translate(30px, -20px); }
+        }
+
+        /* Total Counter */
+        .leak-total {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .leak-total-label {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .leak-total-value {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #f87171;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .leak-total-subtext {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 1.5rem;
+        }
+
+        .leak-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 1.75rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .leak-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+        }
+
+        /* ============================================
+           APPS SECTION - Flowy Curved Lines
+           ============================================ */
+        .apps-section {
+            padding: 5rem 2rem;
+            background: var(--bg-white);
+            overflow: hidden;
+        }
+
+        .apps-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .apps-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .apps-header h2 {
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .apps-header h2 .serif {
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .apps-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .apps-flow-container {
+            position: relative;
+            height: 400px;
+        }
+
+        .flow-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .flow-path {
+            fill: none;
+            stroke: url(#flowGradient);
+            stroke-width: 2;
+            stroke-linecap: round;
+            opacity: 0.6;
+        }
+
+        .scattered-app {
+            position: absolute;
+            width: 52px;
+            height: 52px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.5rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            z-index: 2;
+            transition: all 0.3s;
+        }
+
+        .scattered-app:hover {
+            transform: scale(1.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        .savvy-center {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            text-align: center;
+        }
+
+        .savvy-icon-big {
+            width: 100px;
+            height: 100px;
+            background: var(--accent);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 12px 40px rgba(16, 185, 129, 0.4);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 12px 40px rgba(16, 185, 129, 0.4); }
+            50% { box-shadow: 0 16px 60px rgba(16, 185, 129, 0.5); }
+        }
+
+        .savvy-icon-big svg {
+            width: 48px;
+            height: 48px;
+            color: white;
+        }
+
+        .savvy-center-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .savvy-center-tag {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================
+           ALERTS SECTION - Uniform Cards
+           ============================================ */
+        .alerts-section {
+            padding: 5rem 2rem;
+            background: var(--bg-primary);
+        }
+
+        .alerts-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .alerts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .alert-card {
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+            transition: all 0.2s;
+        }
+
+        .alert-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.12);
+            transform: translateY(-3px);
+        }
+
+        .alert-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .alert-icon svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .alert-icon.orange { background: var(--orange-light); color: var(--orange); }
+        .alert-icon.green { background: var(--accent-light); color: var(--accent); }
+        .alert-icon.blue { background: var(--blue-light); color: var(--blue); }
+        .alert-icon.purple { background: var(--purple-light); color: var(--purple); }
+        .alert-icon.pink { background: var(--pink-light); color: var(--pink); }
+
+        .alert-card h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-example {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .alert-example strong {
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+           WORKFLOW SECTION
+           ============================================ */
+        .workflow-section {
+            padding: 5rem 2rem;
+            background: var(--bg-white);
+        }
+
+        .workflow-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .workflow-content h2 {
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .workflow-content h2 .serif {
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .workflow-content > p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .workflow-highlight {
+            background: var(--accent-light);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .workflow-highlight p {
+            font-size: 0.9rem;
+            color: var(--accent-dark);
+            font-weight: 500;
+        }
+
+        .workflow-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .workflow-benefit {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        .workflow-benefit-check {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .workflow-benefit-check svg {
+            width: 12px;
+            height: 12px;
+            color: var(--accent);
+        }
+
+        .workflow-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .workflow-card {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+        }
+
+        .workflow-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .workflow-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--purple-light);
+            color: var(--purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .workflow-author-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .workflow-author-tag {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .workflow-card-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .workflow-card-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .workflow-steps {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .workflow-step {
+            background: var(--bg-white);
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .workflow-step-arrow {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+        }
+
+        /* ============================================
+           HOUSEHOLDS SECTION
+           ============================================ */
+        .households-section {
+            padding: 5rem 2rem;
+            background: var(--bg-primary);
+        }
+
+        .households-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .households-content h2 {
+            font-size: clamp(1.5rem, 4vw, 2.25rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .households-content h2 .serif {
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .households-content > p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .households-visual {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .household-card {
+            flex: 1;
+            background: var(--bg-white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.25rem;
+        }
+
+        .household-avatar-row {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+
+        .household-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .household-avatar.blue { background: var(--blue-light); color: var(--blue); }
+        .household-avatar.purple { background: var(--purple-light); color: var(--purple); }
+
+        .household-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .household-role {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .household-total {
+            margin-bottom: 0.75rem;
+        }
+
+        .household-total-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        .household-total-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .household-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .household-list-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .household-list-value {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* ============================================
+           USE CASES SECTION
+           ============================================ */
+        .usecases-section {
+            padding: 5rem 2rem;
+            background: var(--bg-white);
+        }
+
+        .usecases-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .usecases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .usecase-card {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .usecase-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+
+        .usecase-card.featured {
+            background: var(--accent-light);
+            border-color: var(--accent);
+        }
+
+        .usecase-emoji {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .usecase-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .usecase-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .usecase-card .highlight {
+            background: var(--accent);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .usecase-card .big-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0.75rem 0;
+            display: block;
+        }
+
+        .usecase-card .big-text span {
+            color: var(--accent);
+        }
+
+        /* ============================================
+           CTA SECTION
+           ============================================ */
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--accent-light) 100%);
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-section h2 .serif {
+            font-weight: 400;
+            font-style: italic;
+        }
+
+        .cta-section > p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 400px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-form {
+            display: flex;
+            gap: 0.6rem;
+            justify-content: center;
+            max-width: 380px;
+            margin: 0 auto 1rem;
+        }
+
+        .cta-form input {
+            flex: 1;
+            padding: 0.9rem 1rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: var(--bg-white);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .cta-form input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .cta-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .form-message.success {
+            background: var(--accent-light);
+            color: var(--accent-dark);
+            display: block;
+        }
+
+        .form-message.error {
+            background: var(--red-light);
+            color: var(--red);
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background: var(--bg-white);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer-disclaimer {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0.75rem auto 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .stats-row { grid-template-columns: 1fr; }
+            .items-grid { grid-template-columns: 1fr; }
+            .apps-flow-container { height: 500px; }
+            .savvy-center { right: 50%; transform: translate(50%, 0); top: auto; bottom: 0; }
+            .alerts-grid { grid-template-columns: 1fr; }
+            .workflow-inner { grid-template-columns: 1fr; }
+            .households-inner { grid-template-columns: 1fr; }
+            .usecases-grid { grid-template-columns: 1fr; }
+            .cta-form { flex-direction: column; }
+        }
+
+        @media (max-width: 600px) {
+            .households-visual { flex-direction: column; }
+            .drip-item { position: relative; top: auto !important; left: auto !important; right: auto !important; }
+            .bucket-visual { display: flex; flex-direction: column; gap: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            Savvy
+        </div>
+        <a href="#waitlist" class="nav-cta">Get Early Access</a>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-badge">✨ Now in private beta</div>
+        <h1>Stop losing money<br>you <span class="serif">already earned</span></h1>
+        <p class="hero-subtitle">Gift cards you forgot. Store credits that expired. Card perks you never used. Savvy finds it all and reminds you before it's gone.</p>
+        <a href="#waitlist" class="btn-primary">
+            Join the Waitlist
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </a>
+        <p class="hero-note">Free to use. We'll notify you when it's your turn.</p>
+    </section>
+
+    <!-- DASHBOARD PREVIEW -->
+    <section class="dashboard-section">
+        <div class="dashboard-card">
+            <div class="dashboard-header">
+                <div class="dashboard-dot red"></div>
+                <div class="dashboard-dot yellow"></div>
+                <div class="dashboard-dot green"></div>
+                <span class="dashboard-title">Your Money — All in One Place</span>
+            </div>
+            <div class="dashboard-body">
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-label">Net Worth</div>
+                        <div class="stat-value">$127,430</div>
+                        <div class="stat-meta">↑ $2,340 this month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Hidden Money Found</div>
+                        <div class="stat-value green">$847</div>
+                        <div class="stat-meta">Across 9 places</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Needs Attention</div>
+                        <div class="stat-value">4</div>
+                        <div class="stat-meta">2 expiring soon</div>
+                    </div>
+                </div>
+
+                <div class="items-grid">
+                    <div class="money-item highlight">
+                        <div class="item-icon" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">📉</div>
+                        <div class="item-content">
+                            <div class="item-name">Price Drop — LG TV</div>
+                            <div class="item-detail">Now $150 less than you paid</div>
+                        </div>
+                        <span class="item-badge success">Get $150</span>
+                    </div>
+                    <div class="money-item alert">
+                        <div class="item-icon" style="background: #fee2e2;">⚠️</div>
+                        <div class="item-content">
+                            <div class="item-name">Facetune Trial Ending</div>
+                            <div class="item-detail">Charges $4.99/wk tomorrow</div>
+                        </div>
+                        <span class="item-badge danger">Cancel?</span>
+                    </div>
+                    <div class="money-item">
+                        <div class="item-icon brand" style="background: #006fcf;">AMEX</div>
+                        <div class="item-content">
+                            <div class="item-name">Free Hotel Night</div>
+                            <div class="item-detail">Hilton Aspire benefit</div>
+                        </div>
+                        <span class="item-badge warning">Exp. Mar 15</span>
+                    </div>
+                    <div class="money-item">
+                        <div class="item-icon brand" style="background: #000;">RAY-BAN</div>
+                        <div class="item-content">
+                            <div class="item-name">Ray-Ban Gift Card</div>
+                            <div class="item-detail">From birthday last year</div>
+                        </div>
+                        <span class="item-value">$75</span>
+                    </div>
+                    <div class="money-item">
+                        <div class="item-icon brand" style="background: #111;">✓</div>
+                        <div class="item-content">
+                            <div class="item-name">Refund — Nike Shoes</div>
+                            <div class="item-detail">Returned 6 days ago</div>
+                        </div>
+                        <span class="item-badge info">Tracking</span>
+                    </div>
+                    <div class="money-item">
+                        <div class="item-icon brand" style="background: #cc0000;">◎</div>
+                        <div class="item-content">
+                            <div class="item-name">Target Store Credit</div>
+                            <div class="item-detail">From return — Dec 12</div>
+                        </div>
+                        <span class="item-badge warning">8 days left</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- LEAKS SECTION - Fading Cards + Counter -->
+    <section class="leaks-section">
+        <div class="leaks-inner">
+            <div class="leaks-header">
+                <h2>Small leaks. <span class="serif">Big losses.</span></h2>
+                <p>Each one feels minor. Together, they quietly drain hundreds every year.</p>
+            </div>
+
+            <div class="leak-cards-container">
+                <div class="leak-card">
+                    <div class="leak-card-left">
+                        <div class="leak-card-icon">🎁</div>
+                        <div class="leak-card-content">
+                            <div class="leak-card-title">Unused gift cards</div>
+                            <div class="leak-card-desc">Sitting in a drawer, slowly expiring</div>
+                        </div>
+                    </div>
+                    <div class="leak-card-amount">-$45</div>
+                </div>
+
+                <div class="leak-card">
+                    <div class="leak-card-left">
+                        <div class="leak-card-icon">🏷️</div>
+                        <div class="leak-card-content">
+                            <div class="leak-card-title">Expired store credits</div>
+                            <div class="leak-card-desc">From returns you forgot to use</div>
+                        </div>
+                    </div>
+                    <div class="leak-card-amount">-$32</div>
+                </div>
+
+                <div class="leak-card">
+                    <div class="leak-card-left">
+                        <div class="leak-card-icon">🔄</div>
+                        <div class="leak-card-content">
+                            <div class="leak-card-title">Forgotten free trials</div>
+                            <div class="leak-card-desc">That app you tried once, still charging</div>
+                        </div>
+                    </div>
+                    <div class="leak-card-amount">-$47</div>
+                </div>
+
+                <div class="leak-card">
+                    <div class="leak-card-left">
+                        <div class="leak-card-icon">📉</div>
+                        <div class="leak-card-content">
+                            <div class="leak-card-title">Missed price drops</div>
+                            <div class="leak-card-desc">Could've gotten money back, didn't know</div>
+                        </div>
+                    </div>
+                    <div class="leak-card-amount">-$150</div>
+                </div>
+
+                <div class="leak-card">
+                    <div class="leak-card-left">
+                        <div class="leak-card-icon">💸</div>
+                        <div class="leak-card-content">
+                            <div class="leak-card-title">Lost refunds</div>
+                            <div class="leak-card-desc">Returned it, but the money never came</div>
+                        </div>
+                    </div>
+                    <div class="leak-card-amount">-$89</div>
+                </div>
+            </div>
+
+            <div class="leak-total">
+                <div class="leak-total-label">Average lost per year</div>
+                <div class="leak-total-value">$363</div>
+                <div class="leak-total-subtext">That's a nice dinner. A weekend trip. Gone.</div>
+                <a href="#waitlist" class="leak-cta">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    Savvy catches every one
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPS SECTION - Flowy Curved Lines -->
+    <section class="apps-section">
+        <div class="apps-inner">
+            <div class="apps-header">
+                <h2>One app. <span class="serif">Not twenty.</span></h2>
+                <p>Budgeting, rewards, price tracking, subscriptions... finally in one place.</p>
+            </div>
+
+            <div class="apps-flow-container">
+                <svg class="flow-svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <linearGradient id="flowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#d4d4d8;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#10b981;stop-opacity:0.8" />
+                        </linearGradient>
+                    </defs>
+                    
+                    <!-- Curved flowing lines from apps to Savvy -->
+                    <path class="flow-path" d="M80,60 Q200,60 350,150 T620,200"/>
+                    <path class="flow-path" d="M180,40 Q300,80 400,140 T620,200"/>
+                    <path class="flow-path" d="M60,140 Q200,160 380,180 T620,200"/>
+                    <path class="flow-path" d="M140,200 Q280,200 420,200 T620,200"/>
+                    <path class="flow-path" d="M80,260 Q220,240 400,220 T620,200"/>
+                    <path class="flow-path" d="M160,320 Q300,280 440,240 T620,200"/>
+                    <path class="flow-path" d="M60,360 Q240,340 420,280 T620,200"/>
+                    <path class="flow-path" d="M200,380 Q340,340 480,280 T620,200"/>
+                </svg>
+
+                <!-- Scattered app icons -->
+                <div class="scattered-app" style="left: 5%; top: 10%;">Mint</div>
+                <div class="scattered-app" style="left: 18%; top: 5%;">YNAB</div>
+                <div class="scattered-app" style="left: 2%; top: 30%;">Honey</div>
+                <div class="scattered-app" style="left: 12%; top: 45%;">Rakuten</div>
+                <div class="scattered-app" style="left: 5%; top: 60%;">Truebill</div>
+                <div class="scattered-app" style="left: 15%; top: 75%;">Trim</div>
+                <div class="scattered-app" style="left: 2%; top: 88%;">Paribus</div>
+                <div class="scattered-app" style="left: 20%; top: 92%;">Camel</div>
+
+                <!-- Savvy center icon -->
+                <div class="savvy-center">
+                    <div class="savvy-icon-big">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="savvy-center-name">Savvy</div>
+                    <div class="savvy-center-tag">Everything. One place.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALERTS SECTION - Uniform Cards -->
+    <section class="alerts-section">
+        <div class="alerts-inner">
+            <div class="section-header">
+                <h2>We watch. You relax.</h2>
+                <p>Smart nudges at the right time — before anything slips away.</p>
+            </div>
+
+            <div class="alerts-grid">
+                <div class="alert-card">
+                    <div class="alert-icon blue">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                            <polyline points="17 6 23 6 23 12"/>
+                        </svg>
+                    </div>
+                    <h3>Price drops</h3>
+                    <p class="alert-example">"Your <strong>LG TV</strong> dropped <strong>$150</strong>. Here's how to get it back."</p>
+                </div>
+
+                <div class="alert-card">
+                    <div class="alert-icon orange">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <h3>Expiring soon</h3>
+                    <p class="alert-example">"Your <strong>Target credit ($32)</strong> expires in 3 days."</p>
+                </div>
+
+                <div class="alert-card">
+                    <div class="alert-icon green">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Late refunds</h3>
+                    <p class="alert-example">"It's been 7 days. Your <strong>$89 refund</strong> still hasn't hit."</p>
+                </div>
+
+                <div class="alert-card">
+                    <div class="alert-icon purple">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                    </div>
+                    <h3>Trial charges</h3>
+                    <p class="alert-example">"<strong>Facetune trial</strong> ends tomorrow. Cancel before the $4.99/wk charge."</p>
+                </div>
+
+                <div class="alert-card">
+                    <div class="alert-icon pink">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
+                            <line x1="7" y1="7" x2="7.01" y2="7"/>
+                        </svg>
+                    </div>
+                    <h3>Card offers</h3>
+                    <p class="alert-example">"<strong>10% back at Best Buy</strong> on your Chase. Expires Friday."</p>
+                </div>
+
+                <div class="alert-card">
+                    <div class="alert-icon orange">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                    </div>
+                    <h3>Benefits reset</h3>
+                    <p class="alert-example">"Your <strong>$200 airline credit</strong> resets Dec 31. You've used $0."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKFLOW SECTION -->
+    <section class="workflow-section">
+        <div class="workflow-inner">
+            <div class="workflow-content">
+                <h2>Share workflows like <span class="serif">recipes</span></h2>
+                <p>Know someone great with money? They can share their setup, and it works with your accounts, your cards, your context.</p>
+                
+                <div class="workflow-highlight">
+                    <p>🍳 Like getting a friend's recipe — but the ingredients are already in your kitchen.</p>
+                </div>
+
+                <div class="workflow-benefits">
+                    <div class="workflow-benefit">
+                        <div class="workflow-benefit-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <span>Catch forgotten trials before they charge</span>
+                    </div>
+                    <div class="workflow-benefit">
+                        <div class="workflow-benefit-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <span>Negotiate or cancel unused subscriptions</span>
+                    </div>
+                    <div class="workflow-benefit">
+                        <div class="workflow-benefit-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <span>Auto-export to spreadsheet monthly</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workflow-cards">
+                <div class="workflow-card">
+                    <div class="workflow-card-header">
+                        <div class="workflow-avatar">S</div>
+                        <div>
+                            <div class="workflow-author-name">Sarah M.</div>
+                            <div class="workflow-author-tag">Shared with you</div>
+                        </div>
+                    </div>
+                    <div class="workflow-card-title">"Catch Forgotten Trials"</div>
+                    <div class="workflow-card-desc">Alerts before free trials convert. No more surprise Facetune, Calm, or fitness app charges.</div>
+                    <div class="workflow-steps">
+                        <span class="workflow-step">Detect trial</span>
+                        <span class="workflow-step-arrow">→</span>
+                        <span class="workflow-step">Track end date</span>
+                        <span class="workflow-step-arrow">→</span>
+                        <span class="workflow-step">Alert 2 days before</span>
+                    </div>
+                </div>
+
+                <div class="workflow-card">
+                    <div class="workflow-card-header">
+                        <div class="workflow-avatar" style="background: #dbeafe; color: #2563eb;">M</div>
+                        <div>
+                            <div class="workflow-author-name">Mike T.</div>
+                            <div class="workflow-author-tag">Finance blogger</div>
+                        </div>
+                    </div>
+                    <div class="workflow-card-title">"Subscription Audit + Negotiate"</div>
+                    <div class="workflow-card-desc">Lists all subscriptions, flags unused ones, helps negotiate Netflix, internet, insurance.</div>
+                    <div class="workflow-steps">
+                        <span class="workflow-step">Find all subs</span>
+                        <span class="workflow-step-arrow">→</span>
+                        <span class="workflow-step">Flag unused</span>
+                        <span class="workflow-step-arrow">→</span>
+                        <span class="workflow-step">Negotiate scripts</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOUSEHOLDS SECTION -->
+    <section class="households-section">
+        <div class="households-inner">
+            <div class="households-content">
+                <h2>For couples: both <span class="serif">finally see everything</span></h2>
+                <p>Usually one person manages the money while the other is left in the dark. Savvy gives both the same view — no more "reporting."</p>
+                <div class="workflow-benefits">
+                    <div class="workflow-benefit">
+                        <div class="workflow-benefit-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <span>Both see all accounts and hidden money</span>
+                    </div>
+                    <div class="workflow-benefit">
+                        <div class="workflow-benefit-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <span>Both get alerts before things expire</span>
+                    </div>
+                    <div class="workflow-benefit">
+                        <div class="workflow-benefit-check">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                        </div>
+                        <span>No more "what's our balance?" questions</span>
+                    </div>
+                </div>
+            </div>
+            <div class="households-visual">
+                <div class="household-card">
+                    <div class="household-avatar-row">
+                        <div class="household-avatar blue">A</div>
+                        <div>
+                            <div class="household-name">Alex</div>
+                            <div class="household-role">Day-to-day</div>
+                        </div>
+                    </div>
+                    <div class="household-total">
+                        <div class="household-total-label">Household Total</div>
+                        <div class="household-total-value">$284,320</div>
+                    </div>
+                    <div class="household-list">
+                        <div class="household-list-item">
+                            <span>Joint Checking</span>
+                            <span class="household-list-value">$12,450</span>
+                        </div>
+                        <div class="household-list-item">
+                            <span>Hidden Money</span>
+                            <span class="household-list-value" style="color: var(--accent);">$847</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="household-card">
+                    <div class="household-avatar-row">
+                        <div class="household-avatar purple">J</div>
+                        <div>
+                            <div class="household-name">Jordan</div>
+                            <div class="household-role">Weekly check-in</div>
+                        </div>
+                    </div>
+                    <div class="household-total">
+                        <div class="household-total-label">Household Total</div>
+                        <div class="household-total-value">$284,320</div>
+                    </div>
+                    <div class="household-list">
+                        <div class="household-list-item">
+                            <span>Joint Checking</span>
+                            <span class="household-list-value">$12,450</span>
+                        </div>
+                        <div class="household-list-item">
+                            <span>Hidden Money</span>
+                            <span class="household-list-value" style="color: var(--accent);">$847</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="usecases-section">
+        <div class="usecases-inner">
+            <div class="section-header">
+                <h2>Works however you manage money</h2>
+                <p>Hands-on or hands-off — Savvy adapts to you.</p>
+            </div>
+            <div class="usecases-grid">
+                <div class="usecase-card">
+                    <div class="usecase-emoji">📊</div>
+                    <h3>"I like spreadsheets"</h3>
+                    <p>Export to Excel anytime, or <span class="highlight">automate</span> monthly downloads your way.</p>
+                </div>
+                <div class="usecase-card">
+                    <div class="usecase-emoji">😌</div>
+                    <h3>"Just give me peace of mind"</h3>
+                    <p>We watch your refunds, track credits, and only ping you when it matters.</p>
+                </div>
+                <div class="usecase-card featured">
+                    <div class="usecase-emoji">💬</div>
+                    <h3>"Which card should I use?"</h3>
+                    <p>Just ask. Anytime.</p>
+                    <span class="big-text"><span>Text</span> or <span>email</span> your Savvy.</span>
+                    <p>Like a money-savvy friend in your pocket.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="waitlist">
+        <h2>Your money. <span class="serif">All of it.</span></h2>
+        <p>Join thousands done losing money to forgetfulness.</p>
+        <form class="cta-form" id="waitlistForm">
+            <input type="email" id="emailInput" placeholder="Enter your email" required>
+            <button type="submit" class="btn-primary" id="submitBtn">Join Waitlist</button>
+        </form>
+        <div class="form-message" id="formMessage"></div>
+        <p class="cta-note">Free to use. No credit card required.</p>
+    </section>
+
+    <footer>
+        <div class="footer-logo">Savvy</div>
+        <p class="footer-text">© 2025 Savvy. Stop losing money you already earned.</p>
+        <p class="footer-disclaimer">Savvy provides financial visibility and reminders. We don't provide investment advice, execute trades, or make decisions on your behalf.</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.money-item, .alert-card, .workflow-card, .household-card, .usecase-card, .stat-card, .drip-item, .scattered-app').forEach((el, i) => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = `all 0.5s ease-out ${i * 0.05}s`;
+            observer.observe(el);
+        });
+
+        // Form submission
+        const form = document.getElementById('waitlistForm');
+        const emailInput = document.getElementById('emailInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const formMessage = document.getElementById('formMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            if (!email) return;
+
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+
+            try {
+                // Determine API URL based on environment
+                // For production: Update this to your Render backend URL or custom domain (e.g., api.savvy.io)
+                const apiUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                    ? 'http://localhost:3000/api/signup'
+                    : (window.location.hostname === 'savvy.io' || window.location.hostname === 'www.savvy.io')
+                    ? 'https://savvy-api-1kov.onrender.com'  // Update to your Render URL or api.savvy.io
+                    : 'https://savvy-api.onrender.com/api/signup';  // Default Render URL
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    formMessage.textContent = 'Thanks! We\'ll be in touch soon.';
+                    formMessage.className = 'form-message success';
+                    emailInput.value = '';
+                } else {
+                    formMessage.textContent = data.error || 'Something went wrong. Please try again.';
+                    formMessage.className = 'form-message error';
+                }
+            } catch (error) {
+                formMessage.textContent = 'Unable to connect. Please try again later.';
+                formMessage.className = 'form-message error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join Waitlist';
+            }
+        });
+    </script>
+</body>
+</html>
