@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Savvy</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2.5'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #fafaf9;
+            --bg-white: #ffffff;
+            --bg-subtle: #f5f5f4;
+            --text-primary: #1c1917;
+            --text-secondary: #57534e;
+            --text-muted: #a8a29e;
+            --accent: #10b981;
+            --accent-dark: #059669;
+            --accent-light: #d1fae5;
+            --border: #e7e5e4;
+            --border-light: #f5f5f4;
+            --shadow-accent: 0 4px 14px rgba(16, 185, 129, 0.3);
+            --radius-sm: 12px;
+            --radius-md: 16px;
+            --radius-full: 100px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'DM Sans', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        .serif { font-family: 'DM Serif Display', Georgia, serif; }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(250, 250, 249, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        .logo-icon {
+            width: 36px; height: 36px;
+            background: var(--accent);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+        }
+        .logo-icon svg { width: 18px; height: 18px; color: white; }
+        .nav-cta {
+            background: var(--text-primary);
+            color: white;
+            padding: 0.6rem 1.25rem;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover { background: #27272a; }
+
+        /* HERO */
+        .hero {
+            padding: 9rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16, 185, 129, 0.07), transparent);
+            pointer-events: none;
+        }
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--accent-light);
+            color: var(--accent-dark);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.35rem 0.9rem;
+            border-radius: var(--radius-full);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        .hero h1 .serif { font-weight: 400; font-style: italic; }
+        .hero-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        /* LAYOUT */
+        .page-body {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 2rem 6rem;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        /* STICKY TOC */
+        .toc {
+            position: sticky;
+            top: 90px;
+        }
+        .toc-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+        .toc-list a {
+            display: block;
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 0.35rem 0.75rem;
+            border-radius: 8px;
+            border-left: 2px solid transparent;
+            transition: all 0.15s;
+            line-height: 1.4;
+        }
+        .toc-list a:hover,
+        .toc-list a.active {
+            color: var(--accent-dark);
+            background: var(--accent-light);
+            border-left-color: var(--accent);
+        }
+        .toc-contact {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--bg-subtle);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+        }
+        .toc-contact p {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .toc-contact a {
+            color: var(--accent-dark);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        /* CONTENT */
+        .content {
+            min-width: 0;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 90px;
+        }
+
+        .section-number {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.9rem;
+            line-height: 1.75;
+        }
+
+        .section p:last-child { margin-bottom: 0; }
+
+        .section ul {
+            list-style: none;
+            margin: 0.75rem 0 0.9rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .section ul li {
+            font-size: 0.93rem;
+            color: var(--text-secondary);
+            padding-left: 1.4rem;
+            position: relative;
+            line-height: 1.65;
+        }
+
+        .section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6em;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .section ul li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Callout box */
+        .callout {
+            background: var(--accent-light);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1.5rem;
+            margin: 1.25rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        .callout-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 0.05rem; }
+        .callout-text { font-size: 0.9rem; color: #065f46; line-height: 1.6; }
+        .callout-text strong { color: #064e3b; }
+
+        /* Warning callout */
+        .callout.warning {
+            background: #fef3c7;
+            border-color: rgba(180, 83, 9, 0.2);
+        }
+        .callout.warning .callout-text { color: #92400e; }
+        .callout.warning .callout-text strong { color: #78350f; }
+
+        /* Divider */
+        .section-divider {
+            height: 1px;
+            background: var(--border-light);
+            margin-bottom: 3rem;
+        }
+
+        /* Highlight table */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 0.9rem;
+            font-size: 0.875rem;
+        }
+        .data-table th {
+            text-align: left;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 0.5rem 0.75rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .data-table td {
+            padding: 0.65rem 0.75rem;
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            vertical-align: top;
+            line-height: 1.5;
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table td:first-child { font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+
+        /* Rights chips */
+        .rights-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin: 1rem 0;
+        }
+        .right-chip {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.9rem 1rem;
+        }
+        .right-chip-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .right-chip p {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin: 0 !important;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background: var(--bg-white);
+            border-top: 1px solid var(--border-light);
+        }
+        .footer-logo { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.4rem; }
+        .footer-text { font-size: 0.8rem; color: var(--text-muted); }
+        .footer-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 0.75rem; }
+        .footer-links a { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; }
+        .footer-links a:hover { color: var(--accent); }
+
+        /* Mobile */
+        @media (max-width: 720px) {
+            .page-body { grid-template-columns: 1fr; gap: 2rem; }
+            .toc { display: none; }
+            .hero { padding: 8rem 1.5rem 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            Savvy
+        </a>
+        <a href="index.html#waitlist" class="nav-cta">Get Early Access</a>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-eyebrow">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Legal
+        </div>
+        <h1>Privacy <span class="serif">Policy</span></h1>
+        <div class="hero-meta">
+            <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Effective: January 1, 2025
+            </span>
+            <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Last updated: January 1, 2025
+            </span>
+            <span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Savvy Financial Technologies, Inc.
+            </span>
+        </div>
+    </div>
+
+    <div class="page-body">
+
+        <!-- TABLE OF CONTENTS -->
+        <aside class="toc">
+            <div class="toc-label">On this page</div>
+            <ul class="toc-list" id="tocList">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#information-we-collect">Information We Collect</a></li>
+                <li><a href="#how-we-use">How We Use Your Information</a></li>
+                <li><a href="#plaid">Plaid & Financial Data</a></li>
+                <li><a href="#sharing">Sharing Your Information</a></li>
+                <li><a href="#retention">Data Retention</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#your-rights">Your Rights</a></li>
+                <li><a href="#children">Children's Privacy</a></li>
+                <li><a href="#changes">Changes to This Policy</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <div class="toc-contact">
+                <p>Questions? Email us at<br><a href="mailto:privacy@savvyfinance.io">privacy@savvyfinance.io</a></p>
+            </div>
+        </aside>
+
+        <!-- CONTENT -->
+        <main class="content">
+
+            <div class="section" id="overview">
+                <div class="section-number">01</div>
+                <h2>Overview</h2>
+                <p>Savvy Financial Technologies, Inc. ("Savvy," "we," "us," or "our") operates the Savvy app and website at savvyfinance.io. We built Savvy to help you find money you've already earned — expiring credits, forgotten gift cards, pending refunds, and unwanted subscriptions.</p>
+                <p>This Privacy Policy explains what personal information we collect, how we use it, and your choices. By using Savvy, you agree to the practices described here.</p>
+                <div class="callout">
+                    <div class="callout-icon">🔒</div>
+                    <div class="callout-text"><strong>The short version:</strong> We access your financial data only to provide Savvy's features. We never sell your personal information. We use Plaid for read-only bank connectivity — we can never move money on your behalf.</div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="information-we-collect">
+                <div class="section-number">02</div>
+                <h2>Information We Collect</h2>
+                <p>We collect information you provide directly, information from your connected financial accounts, and standard technical data from your use of the app.</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>What This Includes</th>
+                            <th>How We Get It</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Account Info</td>
+                            <td>Name, email address, password (hashed)</td>
+                            <td>You provide it during signup</td>
+                        </tr>
+                        <tr>
+                            <td>Financial Data</td>
+                            <td>Account balances, transaction history, recurring charges</td>
+                            <td>Via Plaid, with your consent</td>
+                        </tr>
+                        <tr>
+                            <td>Card & Benefits</td>
+                            <td>Credit card benefits, expiring credits, gift card balances</td>
+                            <td>Derived from your transactions + your input</td>
+                        </tr>
+                        <tr>
+                            <td>Usage Data</td>
+                            <td>Features used, pages viewed, session timestamps</td>
+                            <td>Automatically collected</td>
+                        </tr>
+                        <tr>
+                            <td>Device Info</td>
+                            <td>Browser type, OS, IP address, device identifiers</td>
+                            <td>Automatically collected</td>
+                        </tr>
+                        <tr>
+                            <td>Communications</td>
+                            <td>Support emails, feedback you submit</td>
+                            <td>You provide it</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>We do not collect Social Security numbers, government-issued ID numbers, or full payment card numbers.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="how-we-use">
+                <div class="section-number">03</div>
+                <h2>How We Use Your Information</h2>
+                <p>We use your information only to operate and improve Savvy. Specifically:</p>
+                <ul>
+                    <li><strong>Provide the service</strong> — Detect expiring credits, track refunds, identify forgotten charges and gift cards, and surface alerts.</li>
+                    <li><strong>Personalize your experience</strong> — Show your net worth, suggest which card to use, and tailor recommendations to your accounts.</li>
+                    <li><strong>Send notifications</strong> — Alert you to time-sensitive items like expiring credits or overdue refunds. You can adjust these in Settings.</li>
+                    <li><strong>Improve Savvy</strong> — Analyze usage patterns in aggregate (never linked to individual identities) to improve features.</li>
+                    <li><strong>Communicate with you</strong> — Respond to support requests and send product updates. You can unsubscribe from marketing at any time.</li>
+                    <li><strong>Prevent fraud and abuse</strong> — Detect unauthorized access and comply with legal obligations.</li>
+                </ul>
+                <p>We do not use your financial data for advertising, sell it to data brokers, or share it with third parties for their own marketing purposes.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="plaid">
+                <div class="section-number">04</div>
+                <h2>Plaid & Financial Data</h2>
+                <p>To connect your bank accounts, Savvy uses <strong>Plaid Technologies, Inc.</strong> Plaid is a trusted financial data network used by Venmo, Robinhood, Coinbase, and thousands of other apps.</p>
+                <div class="callout">
+                    <div class="callout-icon">🏦</div>
+                    <div class="callout-text"><strong>Read-only access only.</strong> Savvy has no ability to move, transfer, or withdraw funds from your accounts. We access transaction history and balances to power Savvy's features — nothing else.</div>
+                </div>
+                <p>When you connect a financial account through Plaid:</p>
+                <ul>
+                    <li>You authenticate directly with your bank — Savvy never sees your banking username or password.</li>
+                    <li>Plaid transmits your financial data to us using bank-level encryption.</li>
+                    <li>Your data is governed by both this Privacy Policy and <a href="https://plaid.com/legal/end-user-privacy-policy/" target="_blank" style="color:var(--accent-dark);font-weight:600;">Plaid's End User Privacy Policy</a>.</li>
+                    <li>You can revoke Plaid access at any time — in Savvy under Settings → Connected Accounts, or directly at <a href="https://my.plaid.com" target="_blank" style="color:var(--accent-dark);font-weight:600;">my.plaid.com</a>.</li>
+                </ul>
+                <p>Financial data retrieved via Plaid is encrypted at rest (AES-256) and in transit (TLS 1.2+) at all times.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="sharing">
+                <div class="section-number">05</div>
+                <h2>Sharing Your Information</h2>
+                <p>We do not sell your personal information. We share data only in the following limited circumstances:</p>
+                <ul>
+                    <li><strong>Service providers</strong> — Trusted vendors who help us operate Savvy (e.g., cloud hosting, email delivery, analytics). These providers are contractually required to protect your data and may not use it for their own purposes.</li>
+                    <li><strong>Plaid</strong> — To facilitate bank account connectivity as described above.</li>
+                    <li><strong>Household members (if you choose)</strong> — If you invite a household member, they can see shared accounts and joint balances. Private accounts remain hidden. You control what is shared.</li>
+                    <li><strong>Legal requirements</strong> — If required by law, court order, or to protect the rights and safety of Savvy or others, we may disclose information as legally required.</li>
+                    <li><strong>Business transfers</strong> — In the event of a merger, acquisition, or sale of all or substantially all assets, your data may be transferred. We will notify you via email before your data is transferred and becomes subject to a different privacy policy.</li>
+                </ul>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="retention">
+                <div class="section-number">06</div>
+                <h2>Data Retention</h2>
+                <p>We retain your personal information for as long as your account is active or as needed to provide the service. Specifically:</p>
+                <ul>
+                    <li><strong>Account data</strong> is retained for the duration of your account and deleted within 30 days of account closure.</li>
+                    <li><strong>Financial transaction data</strong> from Plaid is retained for up to 7 years following account closure to comply with applicable financial regulations.</li>
+                    <li><strong>Usage and analytics data</strong> is retained for up to 24 months in identifiable form, after which it is anonymized or deleted.</li>
+                </ul>
+                <p>You may request deletion of your account and associated data at any time by emailing <a href="mailto:privacy@savvyfinance.io" style="color:var(--accent-dark);font-weight:600;">privacy@savvyfinance.io</a>. We will process deletion requests within 30 days, subject to any legal retention requirements.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="security">
+                <div class="section-number">07</div>
+                <h2>Security</h2>
+                <p>We take security seriously. Measures we have in place include:</p>
+                <ul>
+                    <li>All data encrypted at rest (AES-256) and in transit (TLS 1.2+)</li>
+                    <li>Multi-factor authentication required to access your account</li>
+                    <li>Role-based access controls — only authorized employees can access production systems</li>
+                    <li>Regular vulnerability scans across all infrastructure</li>
+                    <li>Bank-level connectivity via Plaid (your banking credentials are never stored by Savvy)</li>
+                </ul>
+                <div class="callout warning">
+                    <div class="callout-icon">⚠️</div>
+                    <div class="callout-text">No method of transmission over the internet or electronic storage is 100% secure. While we use commercially reasonable means to protect your information, we cannot guarantee absolute security. Please notify us immediately at <strong>security@savvyfinance.io</strong> if you suspect any unauthorized access.</div>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="your-rights">
+                <div class="section-number">08</div>
+                <h2>Your Rights</h2>
+                <p>Depending on where you live, you may have the following rights regarding your personal information. To exercise any of these rights, email us at <a href="mailto:privacy@savvyfinance.io" style="color:var(--accent-dark);font-weight:600;">privacy@savvyfinance.io</a>.</p>
+
+                <div class="rights-grid">
+                    <div class="right-chip">
+                        <div class="right-chip-title">👁️ Access</div>
+                        <p>Request a copy of the personal information we hold about you.</p>
+                    </div>
+                    <div class="right-chip">
+                        <div class="right-chip-title">✏️ Correction</div>
+                        <p>Ask us to correct inaccurate or incomplete information.</p>
+                    </div>
+                    <div class="right-chip">
+                        <div class="right-chip-title">🗑️ Deletion</div>
+                        <p>Request deletion of your personal data, subject to legal retention requirements.</p>
+                    </div>
+                    <div class="right-chip">
+                        <div class="right-chip-title">📦 Portability</div>
+                        <p>Receive your data in a structured, machine-readable format.</p>
+                    </div>
+                    <div class="right-chip">
+                        <div class="right-chip-title">🚫 Opt-Out</div>
+                        <p>Opt out of marketing communications at any time via unsubscribe link or email.</p>
+                    </div>
+                    <div class="right-chip">
+                        <div class="right-chip-title">🔌 Revoke Access</div>
+                        <p>Disconnect bank accounts and revoke Plaid access at any time in Settings.</p>
+                    </div>
+                </div>
+
+                <p>California residents have additional rights under the CCPA/CPRA, including the right to know, delete, and opt out of sale of personal information. We do not sell personal information. To submit a verifiable consumer request, email <a href="mailto:privacy@savvyfinance.io" style="color:var(--accent-dark);font-weight:600;">privacy@savvyfinance.io</a>.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="children">
+                <div class="section-number">09</div>
+                <h2>Children's Privacy</h2>
+                <p>Savvy is not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected information from a child under 13, please contact us immediately at <a href="mailto:privacy@savvyfinance.io" style="color:var(--accent-dark);font-weight:600;">privacy@savvyfinance.io</a> and we will delete it promptly.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="changes">
+                <div class="section-number">10</div>
+                <h2>Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. When we make material changes, we will notify you by email (sent to the address associated with your account) and update the "Last updated" date at the top of this page at least 30 days before the changes take effect.</p>
+                <p>Your continued use of Savvy after any changes constitutes your acceptance of the updated policy. If you do not agree to the updated policy, you may close your account.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="contact">
+                <div class="section-number">11</div>
+                <h2>Contact Us</h2>
+                <p>If you have questions, concerns, or requests related to this Privacy Policy or your personal data, please contact us:</p>
+                <ul>
+                    <li><strong>Email:</strong> privacy@savvyfinance.io</li>
+                    <li><strong>Security issues:</strong> security@savvyfinance.io</li>
+                    <li><strong>Mailing address:</strong> Savvy Financial Technologies, Inc., [Your Address]</li>
+                </ul>
+                <p>We will respond to all privacy-related requests within 5 business days.</p>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-logo">Savvy</div>
+        <p class="footer-text">© 2025 Savvy Financial Technologies, Inc.</p>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="mailto:privacy@savvyfinance.io">Contact</a>
+        </div>
+    </footer>
+
+    <script>
+        // Highlight active TOC item on scroll
+        const sections = document.querySelectorAll('.section[id]');
+        const tocLinks = document.querySelectorAll('.toc-list a');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    tocLinks.forEach(link => link.classList.remove('active'));
+                    const active = document.querySelector(`.toc-list a[href="#${entry.target.id}"]`);
+                    if (active) active.classList.add('active');
+                }
+            });
+        }, { rootMargin: '-20% 0px -70% 0px' });
+
+        sections.forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>
