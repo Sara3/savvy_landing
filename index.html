@@ -925,7 +925,6 @@
         <nav class="footer-links" aria-label="Footer">
             <a href="privacy.html">Privacy Policy</a>
         </nav>
-        <p class="footer-disclaimer">Savvy provides financial visibility and reminders. We don't provide investment advice or make decisions on your behalf. Value guarantee applies to your first paid month — if no value is found, email us for a full refund of that charge.</p>
     </footer>
 
     <script>
@@ -934,7 +933,7 @@
         // Set these to your real URLs. "Start Free Trial" / "Start free" → app URL.
         // Form at bottom can keep using waitlist API or your backend (see form handler below).
         // ============================================
-        const SAVVY_APP_URL = 'https://app.savvy.io';  // Your app frontend – signup/login (change this)
+        const SAVVY_APP_URL = 'https://app.withsavvy.ai/#sign-up';
         const SAVVY_SIGNUP_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:3000/api/signup'
             : 'https://savvy-api-1kov.onrender.com/api/signup';  // Or your backend signup/trial endpoint
@@ -1036,9 +1035,13 @@
                 });
                 const data = await response.json();
                 if (response.ok) {
-                    formMessage.textContent = "You're in! Check your email for next steps.";
+                    formMessage.textContent = "You're in! Redirecting to sign up…";
                     formMessage.className = 'form-message success';
+                    const signupEmail = emailInput.value.trim();
                     emailInput.value = '';
+                    setTimeout(() => {
+                        window.location.href = `https://app.withsavvy.ai/?email=${encodeURIComponent(signupEmail)}#sign-up`;
+                    }, 1200);
                 } else {
                     formMessage.textContent = data.error || 'Something went wrong. Please try again.';
                     formMessage.className = 'form-message error';
