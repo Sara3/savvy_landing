@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Savvy — Your AI CFO for Credit Card Benefits</title>
+    <title>Savvy — You Have the Cards. You're Just Not Using Them.</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2.5'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,15 +58,10 @@
             padding: 1rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
             background: rgba(250, 250, 249, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-light);
-            isolation: isolate;
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light); isolation: isolate;
         }
-        .logo {
-            font-size: 1.4rem; font-weight: 700;
-            display: flex; align-items: center; gap: 0.6rem;
-        }
+        .logo { font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 0.6rem; }
         .logo-icon {
             width: 36px; height: 36px; background: var(--accent);
             border-radius: 10px; display: flex; align-items: center; justify-content: center;
@@ -74,12 +69,10 @@
         }
         .logo-icon svg { width: 18px; height: 18px; color: white; }
         .nav-cta {
-            position: relative;
-            z-index: 1;
+            position: relative; z-index: 1;
             background: var(--text-primary); color: white;
             padding: 0.6rem 1.25rem; border-radius: var(--radius-full);
-            font-weight: 600; font-size: 0.875rem; text-decoration: none;
-            transition: all 0.2s;
+            font-weight: 600; font-size: 0.875rem; text-decoration: none; transition: all 0.2s;
         }
         .nav-cta:hover { background: #27272a; }
 
@@ -91,21 +84,21 @@
         }
         .hero::before {
             content: ''; position: absolute; inset: 0;
-            background: 
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.08), transparent),
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.08), transparent),
                 radial-gradient(ellipse 60% 40% at 80% 80%, rgba(16, 185, 129, 0.05), transparent);
             pointer-events: none;
         }
-        .hero-content { max-width: 600px; margin-bottom: 3rem; position: relative; z-index: 1; }
+        .hero-content { max-width: 660px; margin-bottom: 3rem; position: relative; z-index: 1; }
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 700;
             letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 1.25rem;
         }
         .hero h1 .serif { font-weight: 400; font-style: italic; }
-        .hero-clarify {
+        .hero-sub {
             font-size: 1.15rem; color: var(--text-secondary);
-            margin-bottom: 2rem; max-width: 480px; margin-left: auto; margin-right: auto;
+            margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.65;
         }
+        .hero-sub strong { color: var(--accent-dark); font-weight: 600; }
         .btn-primary {
             background: var(--accent); color: white;
             padding: 1rem 2rem; border-radius: var(--radius-full);
@@ -115,27 +108,15 @@
             box-shadow: var(--shadow-accent);
         }
         .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
-
-        /* Hero guarantee pill */
-        .hero-guarantee-row {
+        .hero-micro {
             display: flex; align-items: center; justify-content: center;
-            gap: 1rem; margin-top: 1.25rem; flex-wrap: wrap;
+            gap: 1.25rem; margin-top: 1rem; flex-wrap: wrap;
         }
-        .guarantee-pill {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            background: var(--purple-light); color: var(--purple);
-            font-size: 1rem; font-weight: 600;
-            padding: 0.6rem 1.25rem; border-radius: var(--radius-full);
-            border: 1px solid rgba(139,92,246,0.2);
-        }
-        .guarantee-pill strong {
-            font-size: 1.5rem; font-weight: 800; color: var(--purple);
-        }
-        .hero-note {
+        .hero-micro span {
             font-size: 0.82rem; color: var(--text-muted);
-            display: inline-flex; align-items: center; gap: 0.4rem;
+            display: inline-flex; align-items: center; gap: 0.35rem;
         }
-        .hero-note svg { color: var(--accent); }
+        .hero-micro svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
 
         .hero-visual { position: relative; z-index: 1; }
         .phone-mockup {
@@ -143,7 +124,6 @@
             box-shadow: 0 50px 100px rgba(0,0,0,0.2), 0 30px 60px rgba(0,0,0,0.15), inset 0 0 0 2px rgba(255,255,255,0.1);
         }
         .phone-screen { width: 100%; height: 100%; border-radius: 42px; overflow: hidden; position: relative; }
-
         .lock-screen {
             width: 100%; height: 100%;
             background-image: var(--phone-bg-image);
@@ -167,7 +147,6 @@
         .lock-clock { padding-top: 65px; text-align: center; color: white; position: relative; z-index: 2; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
         .lock-time { font-size: 4.5rem; font-weight: 700; line-height: 1; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif; letter-spacing: -2px; }
         .lock-date { font-size: 1.05rem; font-weight: 500; color: rgba(255,255,255,0.95); margin-top: 4px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif; }
-
         .notifications-area { position: absolute; bottom: 105px; left: 16px; right: 10px; z-index: 5; }
         .ios-notification {
             background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
@@ -201,39 +180,8 @@
             width: 46px; height: 46px; background: rgba(40, 40, 40, 0.55);
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: background 0.15s;
         }
-        .lock-btn:hover { background: rgba(60, 60, 60, 0.65); }
         .lock-btn svg { width: 22px; height: 22px; color: white; opacity: 0.95; }
-
-        /* ============================================================
-           GUARANTEE BANNER — new full-width strip below hero
-           ============================================================ */
-        .guarantee-banner {
-            background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%);
-            padding: 1.75rem 2rem;
-            text-align: center;
-        }
-        .guarantee-banner-inner {
-            max-width: 700px; margin: 0 auto;
-            display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-        }
-        .guarantee-banner-title {
-            font-size: 1.3rem; font-weight: 700; color: #fff; letter-spacing: -0.02em;
-        }
-        .guarantee-banner-title .serif { font-weight: 400; font-style: italic; color: #6ee7b7; }
-        .guarantee-banner-desc {
-            font-size: 0.95rem; color: rgba(255,255,255,0.75); max-width: 480px;
-        }
-        .guarantee-badges {
-            display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 0.25rem;
-        }
-        .guarantee-badge {
-            display: inline-flex; align-items: center; gap: 0.35rem;
-            background: rgba(255,255,255,0.1); color: #a7f3d0;
-            font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.75rem;
-            border-radius: var(--radius-full); border: 1px solid rgba(255,255,255,0.15);
-        }
 
         /* EVIDENCE */
         .evidence-section {
@@ -246,7 +194,6 @@
         .evidence-header h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 0.6rem; letter-spacing: -0.02em; }
         .evidence-header h2 .serif { font-weight: 400; font-style: italic; color: var(--accent); }
         .evidence-header p { font-size: 1rem; color: rgba(255,255,255,0.5); }
-
         .discovery-cards { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
         .discovery-card {
             display: flex; align-items: center; justify-content: space-between;
@@ -274,7 +221,6 @@
             font-size: 1.15rem; font-weight: 700; color: rgba(255,255,255,0.3);
             white-space: nowrap; transition: color 1.2s cubic-bezier(0.4, 0, 0.2, 1); font-variant-numeric: tabular-nums;
         }
-
         .evidence-total { padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .evidence-total-label { font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
         .evidence-total-value {
@@ -293,193 +239,156 @@
         }
         .evidence-cta:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(16, 185, 129, 0.5); }
 
-        /* PERSONAS */
-        .personas-section { padding: 6rem 2rem; background: var(--bg-white); }
-        .personas-inner { max-width: 900px; margin: 0 auto; }
-        .personas-header { text-align: center; margin-bottom: 3rem; }
-        .personas-header h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
-        .personas-header h2 .serif { font-weight: 400; font-style: italic; }
-        .personas-header p { font-size: 1.05rem; color: var(--text-secondary); }
-        .personas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        .persona-card {
+        /* HOW IT WORKS */
+        .how-section { padding: 5rem 2rem 5.5rem; background: var(--bg-white); border-top: 1px solid var(--border-light); }
+        .how-inner { max-width: 820px; margin: 0 auto; }
+        .how-header { text-align: center; margin-bottom: 3rem; }
+        .how-header h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+        .how-header h2 .serif { font-weight: 400; font-style: italic; }
+        .how-header p { font-size: 1.05rem; color: var(--text-secondary); max-width: 440px; margin: 0 auto; }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .step-card {
             background: var(--bg-primary); border: 1px solid var(--border);
-            border-radius: var(--radius-lg); padding: 2rem 1.5rem; text-align: center;
-            transition: all 0.3s ease;
+            border-radius: var(--radius-md); padding: 2rem 1.5rem 1.75rem;
+            text-align: center; transition: all 0.3s;
         }
-        .persona-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(16, 185, 129, 0.1); transform: translateY(-4px); }
-        .persona-emoji { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
-        .persona-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
-        .persona-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
-        .persona-card .highlight { color: var(--accent); font-weight: 600; }
-        .persona-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 1rem; }
-        .persona-cta { font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-top: 0.5rem; }
-        .persona-cta .highlight { color: var(--accent); font-weight: 700; }
-
-        /* WATCH / DASHBOARD */
-        .watch-section { padding: 6rem 2rem; background: var(--bg-primary); }
-        .watch-inner { max-width: 900px; margin: 0 auto; }
-        .watch-header { text-align: center; margin-bottom: 3rem; }
-        .watch-header h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
-        .watch-header h2 .serif { font-weight: 400; font-style: italic; }
-        .watch-header p { font-size: 1.05rem; color: var(--text-secondary); }
-        .dashboard-card { background: var(--bg-white); border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: 0 24px 60px rgba(0,0,0,0.1); overflow: hidden; }
-        .dashboard-bar { padding: 0.9rem 1.5rem; background: linear-gradient(to right, #fafafa, #f5f5f5); border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 0.5rem; }
-        .dashboard-dot { width: 10px; height: 10px; border-radius: 50%; }
-        .dashboard-dot.red { background: #fca5a5; }
-        .dashboard-dot.yellow { background: #fcd34d; }
-        .dashboard-dot.green { background: var(--accent); }
-        .dashboard-title { font-size: 0.8rem; font-weight: 500; color: var(--text-secondary); margin-left: 0.5rem; }
-        .dashboard-body { padding: 1.5rem; }
-        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
-        .stat-card { background: var(--bg-subtle); border-radius: var(--radius-md); padding: 1.25rem; }
-        .stat-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.25rem; }
-        .stat-value { font-size: 1.75rem; font-weight: 700; }
-        .stat-value.green { color: var(--accent); }
-        .stat-meta { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem; }
-        .items-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-        .money-item { background: var(--bg-subtle); border-radius: var(--radius-md); padding: 1rem; display: flex; align-items: center; gap: 0.75rem; transition: all 0.2s; }
-        .money-item:hover { background: var(--bg-white); box-shadow: 0 4px 12px rgba(0,0,0,0.06); transform: translateY(-2px); }
-        .money-item.alert { background: linear-gradient(135deg, #fef2f2, #fee2e2); border: 1px solid #fecaca; }
-        .money-item.highlight { background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 1px solid #bfdbfe; }
-        .item-icon { width: 42px; height: 42px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
-        .item-icon.brand { font-size: 0.55rem; font-weight: 700; color: white; }
-        .item-content { flex: 1; min-width: 0; }
-        .item-name { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); }
-        .item-detail { font-size: 0.75rem; color: var(--text-secondary); }
-        .item-badge { font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.6rem; border-radius: 100px; }
-        .item-badge.warning { background: var(--warning-light); color: var(--warning-text); }
-        .item-badge.danger { background: var(--danger-light); color: var(--danger-text); }
-        .item-badge.info { background: var(--info-light); color: var(--info-text); }
-        .item-badge.success { background: var(--success-light); color: var(--accent-dark); }
-        .item-value { font-size: 0.9rem; font-weight: 700; }
-
-        /* TESTIMONIALS */
-        .testimonials-section { padding: 5rem 2rem; background: var(--bg-primary); }
-        .testimonials-inner { max-width: 900px; margin: 0 auto; }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        .testimonial-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; }
-        .testimonial-quote { font-size: 0.95rem; color: var(--text-primary); line-height: 1.6; margin-bottom: 1.25rem; font-style: italic; }
-        .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
-        .testimonial-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--accent-light); color: var(--accent-dark); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; }
-        .testimonial-name { font-weight: 600; font-size: 0.85rem; }
-        .testimonial-role { font-size: 0.75rem; color: var(--text-muted); }
-
-        /* HOUSEHOLDS */
-        .households-section { padding: 6rem 2rem; background: var(--bg-white); }
-        .households-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .households-content h2 { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.02em; line-height: 1.2; }
-        .households-content h2 .serif { font-weight: 400; font-style: italic; }
-        .households-content > p { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
-        .households-benefits { display: flex; flex-direction: column; gap: 0.75rem; }
-        .households-benefit { display: flex; align-items: center; gap: 0.75rem; font-size: 0.95rem; }
-        .benefit-check { color: var(--accent); font-weight: 700; }
-        .households-visual { display: flex; flex-direction: column; gap: 1rem; }
-        .household-card { background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.25rem; }
-        .household-avatar { width: 40px; height: 40px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; color: white; margin-bottom: 0.5rem; }
-        .household-avatar.blue { background: var(--info-text); }
-        .household-avatar.purple { background: var(--purple); }
-        .household-name { font-weight: 700; font-size: 1rem; }
-        .household-sees { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; }
-        .household-accounts { display: flex; flex-direction: column; gap: 0.5rem; }
-        .household-account { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-secondary); }
-        .household-account.private { opacity: 0.5; }
-        .households-solo { font-size: 0.85rem; color: var(--text-muted); margin-top: 1.5rem; font-style: italic; }
-
-        /* ============================================================
-           GUARANTEE SECTION — standalone block
-           ============================================================ */
-        .guarantee-section {
-            padding: 5rem 2rem;
-            background: var(--bg-white);
-            border-top: 1px solid var(--border-light);
+        .step-card:hover { border-color: rgba(16,185,129,0.3); box-shadow: 0 8px 30px rgba(16,185,129,0.08); }
+        .step-num {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: var(--accent); color: white;
+            font-weight: 700; font-size: 1rem; margin-bottom: 1.25rem;
         }
-        .guarantee-inner {
-            max-width: 700px; margin: 0 auto; text-align: center;
+        .step-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+        .step-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
+        .step-time {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            font-size: 0.78rem; color: var(--accent-dark); font-weight: 600;
+            margin-top: 0.75rem; background: var(--accent-light);
+            padding: 0.25rem 0.7rem; border-radius: var(--radius-full);
         }
-        .guarantee-shield {
-            width: 72px; height: 72px;
-            background: var(--accent-light); border-radius: 50%;
+
+        /* AGENT FEED */
+        .agent-section { padding: 5rem 2rem; background: var(--bg-primary); border-top: 1px solid var(--border-light); }
+        .agent-inner { max-width: 620px; margin: 0 auto; }
+        .agent-header { text-align: center; margin-bottom: 2.5rem; }
+        .agent-header h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+        .agent-header h2 .serif { font-weight: 400; font-style: italic; }
+        .agent-header p { font-size: 1rem; color: var(--text-secondary); }
+        .agent-feed { display: flex; flex-direction: column; gap: 0.75rem; }
+        .agent-card {
+            display: flex; align-items: center; gap: 1rem;
+            background: var(--bg-white); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 1.1rem 1.25rem; transition: all 0.2s;
+        }
+        .agent-card:hover { border-color: rgba(16,185,129,0.2); box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+        .agent-icon {
+            width: 42px; height: 42px; border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; margin: 0 auto 1.5rem;
-            box-shadow: 0 0 0 12px rgba(16,185,129,0.06);
+            font-size: 1.2rem; flex-shrink: 0;
         }
-        .guarantee-section h2 {
-            font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700;
-            letter-spacing: -0.02em; margin-bottom: 1rem;
+        .agent-card.urgent .agent-icon { background: var(--danger-light); }
+        .agent-card.opportunity .agent-icon { background: var(--accent-light); }
+        .agent-card.tracked .agent-icon { background: var(--info-light); }
+        .agent-card.savings .agent-icon { background: var(--purple-light); }
+        .agent-card.gift .agent-icon { background: var(--warning-light); }
+        .agent-body { flex: 1; min-width: 0; }
+        .agent-title { font-weight: 600; font-size: 0.92rem; color: var(--text-primary); margin-bottom: 0.2rem; }
+        .agent-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.5; }
+        .agent-action {
+            font-size: 0.75rem; font-weight: 600; padding: 0.3rem 0.75rem;
+            border-radius: var(--radius-full); white-space: nowrap; flex-shrink: 0;
         }
-        .guarantee-section h2 .serif { font-weight: 400; font-style: italic; }
-        .guarantee-section > div > p {
-            font-size: 1.05rem; color: var(--text-secondary);
-            max-width: 520px; margin: 0 auto 2.5rem; line-height: 1.7;
-        }
-        .guarantee-cards {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem;
-        }
-        .guarantee-card {
-            background: var(--bg-primary); border: 1px solid var(--border);
-            border-radius: var(--radius-md); padding: 1.5rem 1rem; text-align: center;
-        }
-        .guarantee-card-icon { font-size: 1.75rem; margin-bottom: 0.6rem; }
-        .guarantee-card-title { font-size: 0.9rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.4rem; }
-        .guarantee-card-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+        .agent-card.urgent .agent-action { background: var(--danger-light); color: var(--danger-text); }
+        .agent-card.opportunity .agent-action { background: var(--accent-light); color: var(--accent-dark); }
+        .agent-card.tracked .agent-action { background: var(--info-light); color: var(--info-text); }
+        .agent-card.savings .agent-action { background: var(--purple-light); color: var(--purple); }
+        .agent-card.gift .agent-action { background: var(--warning-light); color: var(--warning-text); }
+        .agent-footnote { text-align: center; margin-top: 1.75rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
 
-        .guarantee-fine {
-            font-size: 0.82rem; color: var(--text-muted);
-            border-top: 1px solid var(--border-light); padding-top: 1.5rem; margin-top: 1rem;
-            max-width: 480px; margin-left: auto; margin-right: auto;
+        /* SOCIAL PROOF */
+        .proof-section { padding: 4.5rem 2rem; background: var(--bg-white); border-top: 1px solid var(--border-light); }
+        .proof-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+        .proof-header { margin-bottom: 2.5rem; }
+        .proof-header h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+        .proof-header h2 .serif { font-weight: 400; font-style: italic; }
+        .proof-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+        .proof-stat { padding: 1.25rem; }
+        .proof-stat-value { font-size: 2rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 0.25rem; }
+        .proof-stat-label { font-size: 0.85rem; color: var(--text-secondary); }
+        .proof-quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+        .proof-card {
+            background: var(--bg-primary); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 1.5rem; text-align: left;
         }
+        .proof-quote { font-size: 0.92rem; color: var(--text-primary); line-height: 1.65; margin-bottom: 1rem; font-style: italic; }
+        .proof-author { display: flex; align-items: center; gap: 0.6rem; }
+        .proof-avatar {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--accent-light); color: var(--accent-dark);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.8rem;
+        }
+        .proof-name { font-weight: 600; font-size: 0.82rem; color: var(--text-primary); }
+        .proof-detail { font-size: 0.72rem; color: var(--text-muted); }
 
         /* TRUST */
-        .trust-section { padding: 3rem 2rem; background: var(--bg-primary); text-align: center; }
+        .trust-section { padding: 3rem 2rem; background: var(--bg-primary); text-align: center; border-top: 1px solid var(--border-light); }
         .trust-inner { max-width: 600px; margin: 0 auto; }
-        .trust-badge { display: inline-block; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .trust-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
         .trust-details { font-size: 0.85rem; color: var(--text-muted); }
 
         /* CTA */
         .cta-section {
             padding: 5rem 2rem; text-align: center;
-            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--accent-light) 100%);
+            background: linear-gradient(180deg, var(--bg-white) 0%, var(--accent-light) 100%);
         }
-        .cta-section h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 0.75rem; }
+        .cta-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: var(--bg-dark); color: var(--accent);
+            font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+            padding: 0.4rem 1rem; border-radius: var(--radius-full);
+            margin-bottom: 1.5rem;
+        }
+        .cta-section h2 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
         .cta-section h2 .serif { font-weight: 400; font-style: italic; }
-        .cta-section > p { color: var(--text-secondary); font-size: 1.1rem; max-width: 400px; margin: 0 auto 2rem; }
-        .cta-form { display: flex; gap: 0.6rem; justify-content: center; max-width: 380px; margin: 0 auto 0.75rem; }
-        .cta-form input { flex: 1; padding: 0.9rem 1rem; border-radius: var(--radius-full); border: 1px solid var(--border); background: var(--bg-white); font-size: 1rem; outline: none; font-family: inherit; }
-        .cta-form input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
-
-        /* Guarantee reminder near CTA form */
+        .cta-section > p { color: var(--text-secondary); font-size: 1.1rem; max-width: 460px; margin: 0 auto 2rem; line-height: 1.6; }
+        .cta-form {
+            display: flex; gap: 0.5rem; max-width: 420px; margin: 0 auto 1rem;
+            justify-content: center;
+        }
+        .cta-form input[type="email"] {
+            flex: 1; padding: 0.85rem 1.25rem; border-radius: var(--radius-full);
+            border: 1px solid var(--border); font-size: 0.95rem;
+            font-family: inherit; outline: none; transition: border-color 0.2s;
+            background: var(--bg-white);
+        }
+        .cta-form input[type="email"]:focus { border-color: var(--accent); }
+        .cta-form .btn-primary { white-space: nowrap; padding: 0.85rem 1.5rem; font-size: 0.95rem; }
+        .form-message {
+            font-size: 0.85rem; margin-bottom: 0.75rem; min-height: 1.5em;
+        }
+        .form-message.success { color: var(--accent-dark); }
+        .form-message.error { color: var(--danger-text); }
         .cta-guarantee-note {
             display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-            font-size: 0.82rem; color: var(--accent-dark); font-weight: 600; margin-bottom: 0.5rem;
+            font-size: 0.82rem; color: var(--accent-dark); font-weight: 600; margin-bottom: 0.75rem;
         }
         .cta-note { font-size: 0.8rem; color: var(--text-muted); }
 
-        .form-message {
-            margin-top: 1rem; padding: 0.75rem 1rem; border-radius: 8px; display: none;
-            max-width: 380px; margin-left: auto; margin-right: auto;
-        }
-        .form-message.success { background: var(--accent-light); color: var(--accent-dark); display: block; }
-        .form-message.error { background: var(--danger-light); color: var(--danger-text); display: block; }
-
         /* FOOTER */
-        footer { padding: 2rem; text-align: center; background: var(--bg-white); border-top: 1px solid var(--border-light); }
+        footer { padding: 2rem; text-align: center; background: var(--bg-primary); border-top: 1px solid var(--border-light); }
         .footer-logo { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; }
         .footer-text { font-size: 0.8rem; color: var(--text-muted); }
-        .footer-disclaimer { font-size: 0.7rem; color: var(--text-muted); max-width: 500px; margin: 0.75rem auto 0; }
         .footer-links { margin-top: 0.75rem; display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
         .footer-links a { font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; }
         .footer-links a:hover { color: var(--accent); }
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
-            .personas-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-            .stats-row { grid-template-columns: 1fr; }
-            .items-grid { grid-template-columns: 1fr; }
-            .guarantee-cards { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 768px) {
-            .testimonials-grid { grid-template-columns: 1fr; }
-            .households-inner { grid-template-columns: 1fr; gap: 2rem; }
+            .steps { grid-template-columns: 1fr; gap: 1.25rem; }
+            .proof-stats { grid-template-columns: 1fr; gap: 0; }
+            .proof-quotes { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
             .hero { padding: 6rem 1.5rem 3rem; }
@@ -487,15 +396,15 @@
             .phone-mockup { width: 280px; height: 580px; border-radius: 48px; }
             .phone-screen { border-radius: 38px; }
             .lock-time { font-size: 4rem; }
-            .cta-form { flex-direction: column; }
             .discovery-left { gap: 0.75rem; }
             .discovery-icon { width: 38px; height: 38px; font-size: 1.1rem; }
+            .cta-form { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
+    <!-- NAV -->
     <nav class="top-nav">
         <div class="logo">
             <div class="logo-icon">
@@ -505,27 +414,26 @@
             </div>
             Savvy
         </div>
-        <a href="#" class="nav-cta js-app-cta" data-app-url>Start Free Trial</a>
+        <a href="#signup" class="nav-cta">Request Access</a>
     </nav>
 
-    <!-- SECTION 1: HERO -->
+    <!-- 1. HERO -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Your AI CFO for credit card <span class="serif">benefits</span></h1>
-            <p class="hero-clarify">Proactive agents that track, remind, and recover the money you're already paying for — automatically.</p>
-            <a href="#" class="btn-primary js-app-cta" data-app-url>
-                Start Free — 30 Days
+            <h1>You have the cards.<br><span class="serif">You're just not using them.</span></h1>
+            <p class="hero-sub">
+                Savvy's AI agents track every perk, credit, and point across all your cards — and text you what to do.
+            </p>
+            <a href="#signup" class="btn-primary">
+                Request Early Access
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
             </a>
-            <div class="hero-guarantee-row">
-                <span class="hero-note">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
-                    </svg>
-                    Then $20/mo · Cancel anytime
-                </span>
+            <div class="hero-micro">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Free for 30 days</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> 5-minute setup</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> No bank login required</span>
             </div>
         </div>
 
@@ -541,34 +449,24 @@
                         <div class="notifications-area">
                             <div class="ios-notification">
                                 <div class="notif-avatar">
-                                    <svg viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
-                                    </svg>
+                                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
                                 </div>
                                 <div class="notif-content">
                                     <div class="notif-message">
-                                        <span class="notif-text active" data-index="0">Your Chase Sapphire Reserve ($550/year) has 12 unused benefits worth $2,400. Want to see them?</span>
-                                        <span class="notif-text" data-index="1">You spent $340 at Whole Foods this month. Your Amex Gold earns 4x points there — that's $54 in rewards you're collecting.</span>
-                                        <span class="notif-text" data-index="2">I filed your TSA PreCheck reimbursement ($85) with Chase. Should arrive in 5–7 business days.</span>
-                                        <span class="notif-text" data-index="3">I booked the Marriott Marquis for your SF trip (Mar 25–27) using your expiring $250 Amex credit. Net cost: $45. Cancel by tomorrow if you want.</span>
+                                        <span class="notif-text active" data-index="0">You asked: "Which card at Whole Foods?" → Visa (3× groceries). Not your Amex.</span>
+                                        <span class="notif-text" data-index="1">Your $10 Grubhub credit resets in 3 days. Order lunch — it's free.</span>
+                                        <span class="notif-text" data-index="2">$15 Uber Cash just renewed. You didn't use last month's. Don't lose this one.</span>
+                                        <span class="notif-text" data-index="3">Booking a hotel? Your card gets the 4th night free. Book through the portal.</span>
+                                        <span class="notif-text" data-index="4">SaaS trial ends tomorrow ($49/mo). You tested it once. Cancel?</span>
+                                        <span class="notif-text" data-index="5">$300 travel credit expires Dec 31. You've used $0. Book something.</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="lock-bottom">
                             <div class="lock-buttons">
-                                <div class="lock-btn">
-                                    <svg viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M6 2h12v6l-2 2v12H8V10L6 8V2zm2 2v3.17l2 2V20h4V7.17l2-2V4H8z"/>
-                                        <rect x="10" y="8" width="4" height="2" rx="0.5"/>
-                                    </svg>
-                                </div>
-                                <div class="lock-btn">
-                                    <svg viewBox="0 0 24 24" fill="currentColor">
-                                        <path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4z"/>
-                                        <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
-                                    </svg>
-                                </div>
+                                <div class="lock-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 2h12v6l-2 2v12H8V10L6 8V2zm2 2v3.17l2 2V20h4V7.17l2-2V4H8z"/><rect x="10" y="8" width="4" height="2" rx="0.5"/></svg></div>
+                                <div class="lock-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4z"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg></div>
                             </div>
                         </div>
                         <div class="home-indicator"></div>
@@ -578,258 +476,222 @@
         </div>
     </section>
 
-    <!-- SECTION 2: TRUST LADDER -->
-    <section class="guarantee-section">
-        <div class="guarantee-inner">
-            <div class="guarantee-shield">🔓</div>
-            <h2>Start small. <span class="serif">Go as far as you want.</span></h2>
-            <p>
-                Every tier is optional. You can stop at any level and still get real value. Most users start at Tier 1 and expand after seeing their first recovery.
-            </p>
-            <div class="guarantee-cards" style="grid-template-columns: repeat(3, 1fr);">
-                <div class="guarantee-card">
-                    <div class="guarantee-card-icon">💳</div>
-                    <div class="guarantee-card-title">Tier 1: Add Your Cards</div>
-                    <div class="guarantee-card-desc">See your full benefit catalog, forward trial emails to get reminders before you're charged, and text Savvy anytime — "Which card should I use at Walmart?"</div>
-                </div>
-                <div class="guarantee-card">
-                    <div class="guarantee-card-icon">🏦</div>
-                    <div class="guarantee-card-title">Tier 2: Connect Your Bank</div>
-                    <div class="guarantee-card-desc">Auto-match transactions to your cards. Savvy marks which credits were used, flags what you're missing, and tracks expiring benefits.</div>
-                </div>
-                <div class="guarantee-card">
-                    <div class="guarantee-card-icon">🤖</div>
-                    <div class="guarantee-card-title">Tier 3: Full Agent Access</div>
-                    <div class="guarantee-card-desc">Let Savvy book hotels, file claims, and manage subscriptions on your behalf. You stay in control with approval prompts.</div>
-                </div>
-            </div>
-            <div class="guarantee-fine">
-                The phone demo above shows what's possible at each tier — starting from simple card discovery all the way to full automation.
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 2: THE EVIDENCE -->
+    <!-- 2. EVIDENCE — animated proof -->
     <section class="evidence-section">
         <div class="evidence-inner">
             <div class="evidence-header">
-                <h2>Sound <span class="serif">familiar?</span></h2>
-                <p>Watch what Savvy finds — in real time.</p>
+                <h2>Here's what you're <span class="serif">not using</span></h2>
+                <p>Savvy scanned 4 cards. Took 5 minutes. Found this.</p>
             </div>
             <div class="discovery-cards">
                 <div class="discovery-card">
                     <div class="discovery-left">
-                        <div class="discovery-icon">🎁</div>
+                        <div class="discovery-icon">💸</div>
                         <div class="discovery-content">
-                            <div class="discovery-title">Sephora gift card</div>
-                            <div class="discovery-desc">Birthday present, June 2024</div>
+                            <div class="discovery-title">$480/yr in unused statement credits</div>
+                            <div class="discovery-desc">Dining $10/mo, Uber Cash $10–15/mo, Dunkin' $7/mo, Resy $100/yr — use it or lose it</div>
                         </div>
                     </div>
-                    <div class="discovery-amount">+$50</div>
-                </div>
-                <div class="discovery-card">
-                    <div class="discovery-left">
-                        <div class="discovery-icon">🔄</div>
-                        <div class="discovery-content">
-                            <div class="discovery-title">Calm app subscription</div>
-                            <div class="discovery-desc">You tried it once. Still charging.</div>
-                        </div>
-                    </div>
-                    <div class="discovery-amount">+$14.99</div>
+                    <div class="discovery-amount">+$480</div>
                 </div>
                 <div class="discovery-card">
                     <div class="discovery-left">
                         <div class="discovery-icon">💳</div>
                         <div class="discovery-content">
-                            <div class="discovery-title">Amex hotel credit</div>
-                            <div class="discovery-desc">Expires in 11 days</div>
+                            <div class="discovery-title">Wrong card on dining, gas &amp; groceries</div>
+                            <div class="discovery-desc">Optimizing which card to use where = $400/yr more in points</div>
                         </div>
                     </div>
-                    <div class="discovery-amount">+$200</div>
+                    <div class="discovery-amount">+$400</div>
                 </div>
                 <div class="discovery-card">
                     <div class="discovery-left">
-                        <div class="discovery-icon">↩️</div>
+                        <div class="discovery-icon">🏨</div>
                         <div class="discovery-content">
-                            <div class="discovery-title">Zara jacket refund</div>
-                            <div class="discovery-desc">Returned 3 weeks ago. Never posted.</div>
+                            <div class="discovery-title">4th night free — never used</div>
+                            <div class="discovery-desc">Book a 4-night trip and save $250+ on the last night</div>
                         </div>
                     </div>
-                    <div class="discovery-amount">+$89</div>
+                    <div class="discovery-amount">+$250</div>
                 </div>
                 <div class="discovery-card">
                     <div class="discovery-left">
-                        <div class="discovery-icon">📉</div>
+                        <div class="discovery-icon">🔄</div>
                         <div class="discovery-content">
-                            <div class="discovery-title">AirPods price drop</div>
-                            <div class="discovery-desc">Apple lowered the price. Get the difference.</div>
+                            <div class="discovery-title">4 forgotten subscriptions</div>
+                            <div class="discovery-desc">SaaS trial ($49), meditation app ($13), news ($17), cloud storage ($10)</div>
                         </div>
                     </div>
-                    <div class="discovery-amount">+$40</div>
+                    <div class="discovery-amount">+$360</div>
+                </div>
+                <div class="discovery-card">
+                    <div class="discovery-left">
+                        <div class="discovery-icon">🎁</div>
+                        <div class="discovery-content">
+                            <div class="discovery-title">$75 in forgotten gift cards</div>
+                            <div class="discovery-desc">$50 Nordstrom + $25 Starbucks — both still active</div>
+                        </div>
+                    </div>
+                    <div class="discovery-amount">+$75</div>
                 </div>
             </div>
             <div class="evidence-total">
                 <div class="evidence-total-label">Found so far</div>
                 <div class="evidence-total-value">$<span class="counter-amount">0</span></div>
-                <p class="evidence-context">The average Savvy user finds <strong>$847/year</strong>.</p>
-                <p class="evidence-payoff">That's 3.5× your <strong style="color: var(--accent);">annual</strong> subscription — and most users find value in their first week.</p>
-                <a href="#" class="evidence-cta js-app-cta" data-app-url>
-                    What are you missing?
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
+                <p class="evidence-context">That's <strong>$1,565 in year one</strong> — from 4 cards and 5 minutes of setup.</p>
+                <p class="evidence-payoff">You're already paying for this. <strong style="color: var(--accent);">Savvy just makes sure you actually use it.</strong></p>
+                <a href="#signup" class="evidence-cta">
+                    Get early access
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: WORKS HOWEVER YOU MANAGE MONEY -->
-    <section class="personas-section">
-        <div class="personas-inner">
-            <div class="personas-header">
-                <h2>Works however <span class="serif">you</span> manage money</h2>
-                <p>Hands-on or hands-off — Savvy adapts to you.</p>
+    <!-- 3. HOW IT WORKS — progressive tiers -->
+    <section class="how-section">
+        <div class="how-inner">
+            <div class="how-header">
+                <h2>Set it up once. <span class="serif">AI agents handle the rest.</span></h2>
+                <p>Start small. Go deeper when you're ready. Every level unlocks more automation.</p>
             </div>
-            <div class="personas-grid">
-                <div class="persona-card">
-                    <div class="persona-emoji">📊</div>
-                    <h3>"I like spreadsheets"</h3>
-                    <p>Export to Excel anytime, or <span class="highlight">automate</span> monthly downloads. Forward receipts and we'll track them. You stay in control.</p>
+            <div class="steps">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <div class="step-title">Select your cards</div>
+                    <div class="step-desc">Pick the cards you have. Savvy maps every benefit, credit, and perk instantly. Forward a trial email or gift card? We'll track it. Text us "which card at Target?" — we answer in seconds.</div>
+                    <div class="step-time">⏱ Under 5 minutes · No login required</div>
                 </div>
-                <div class="persona-card">
-                    <div class="persona-emoji">😌</div>
-                    <h3>"Just give me peace of mind"</h3>
-                    <p>Connect your bank. We watch for refunds, expiring credits, and forgotten charges. You do nothing.</p>
-                    <div class="persona-note">🔒 Read-only access</div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <div class="step-title">Connect your bank</div>
+                    <div class="step-desc">AI agents monitor your accounts to find forgotten subscriptions, alert you before trials convert, confirm refunds actually hit your account, and match your transactions to the benefits you've used — and the ones you haven't.</div>
+                    <div class="step-time">🔒 Read-only via Plaid</div>
                 </div>
-                <div class="persona-card">
-                    <div class="persona-emoji">💬</div>
-                    <h3>"Which card should I use?"</h3>
-                    <p>Just ask. Anytime.</p>
-                    <div class="persona-cta"><span class="highlight">Text</span> or <span class="highlight">email</span> your Savvy.</div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <div class="step-title">Connect your email</div>
+                    <div class="step-desc">Full autopilot. Savvy enriches every transaction so you know exactly what you paid for. It tracks shipments, confirms deliveries, monitors return windows, and flags anything that hasn't arrived — so nothing falls through the cracks.</div>
+                    <div class="step-time">🤖 Full automation</div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4: WE WATCH. YOU RELAX. -->
-    <section class="watch-section">
-        <div class="watch-inner">
-            <div class="watch-header">
-                <h2>We watch. <span class="serif">You relax.</span></h2>
-                <p>Everything that needs your attention — in one place.</p>
-            </div>
-            <div class="dashboard-card">
-                <div class="dashboard-bar">
-                    <div class="dashboard-dot red"></div>
-                    <div class="dashboard-dot yellow"></div>
-                    <div class="dashboard-dot green"></div>
-                    <span class="dashboard-title">Your Money Dashboard</span>
-                </div>
-                <div class="dashboard-body">
-                    <div class="stats-row">
-                        <div class="stat-card">
-                            <div class="stat-label">Net Worth</div>
-                            <div class="stat-value">$127,430</div>
-                            <div class="stat-meta">↑ $2,340 this month</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-label">Hidden Money Found</div>
-                            <div class="stat-value green">$847</div>
-                            <div class="stat-meta">Across 9 places</div>
-                        </div>
-                        <div class="stat-card">
-                            <div class="stat-label">Needs Attention</div>
-                            <div class="stat-value">4</div>
-                            <div class="stat-meta">2 expiring soon</div>
-                        </div>
-                    </div>
-                    <div class="items-grid">
-                        <div class="money-item highlight">
-                            <div class="item-icon" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">📉</div>
-                            <div class="item-content">
-                                <div class="item-name">Price Drop — LG TV</div>
-                                <div class="item-detail">Now $150 less than you paid</div>
-                            </div>
-                            <span class="item-badge success">Get $150</span>
-                        </div>
-                        <div class="money-item alert">
-                            <div class="item-icon" style="background: #fee2e2;">⚠️</div>
-                            <div class="item-content">
-                                <div class="item-name">Fitness App Trial</div>
-                                <div class="item-detail">Charges $9.99/wk tomorrow</div>
-                            </div>
-                            <span class="item-badge danger">Cancel?</span>
-                        </div>
-                        <div class="money-item">
-                            <div class="item-icon brand" style="background: #006fcf;">AMEX</div>
-                            <div class="item-content">
-                                <div class="item-name">Free Hotel Night</div>
-                                <div class="item-detail">Hilton Aspire benefit</div>
-                            </div>
-                            <span class="item-badge warning">Exp. Mar 15</span>
-                        </div>
-                        <div class="money-item">
-                            <div class="item-icon brand" style="background: #000;">RAY-BAN</div>
-                            <div class="item-content">
-                                <div class="item-name">Ray-Ban Gift Card</div>
-                                <div class="item-detail">From birthday last year</div>
-                            </div>
-                            <span class="item-value">$75</span>
-                        </div>
-                        <div class="money-item">
-                            <div class="item-icon brand" style="background: #111;">✓</div>
-                            <div class="item-content">
-                                <div class="item-name">Refund — Nike Shoes</div>
-                                <div class="item-detail">Returned 6 days ago</div>
-                            </div>
-                            <span class="item-badge info">Tracking</span>
-                        </div>
-                        <div class="money-item">
-                            <div class="item-icon brand" style="background: #cc0000;">◎</div>
-                            <div class="item-content">
-                                <div class="item-name">Target Store Credit</div>
-                                <div class="item-detail">From return — Dec 12</div>
-                            </div>
-                            <span class="item-badge warning">8 days left</span>
-                        </div>
-                    </div>
-                </div>
+            <div style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: var(--text-secondary);">
+                Every level is optional. Most people start with their cards and connect their bank within a week.
             </div>
         </div>
     </section>
 
-    <!-- SECTION 5: TESTIMONIALS -->
-    <section class="testimonials-section">
-        <div class="testimonials-inner">
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Savvy found $1,200 in forgotten credits across 3 cards I didn't even know had benefits. Paid for itself for 5 years."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">M</div>
+    <!-- 4. AGENT PREVIEW -->
+    <section class="agent-section">
+        <div class="agent-inner">
+            <div class="agent-header">
+                <h2>Your AI agents <span class="serif">are always watching</span></h2>
+                <p>They read the fine print, track the deadlines, and text you before money disappears.</p>
+            </div>
+            <div class="agent-feed">
+                <div class="agent-card tracked">
+                    <div class="agent-icon">💬</div>
+                    <div class="agent-body">
+                        <div class="agent-title">You texted: "Which card for this team dinner?"</div>
+                        <div class="agent-desc">→ Amex Gold (4× dining). Not your Sapphire Reserve which only earns 3× here. That's 33% more points on every meal out.</div>
+                    </div>
+                    <span class="agent-action">Answered</span>
+                </div>
+                <div class="agent-card opportunity">
+                    <div class="agent-icon">💸</div>
+                    <div class="agent-body">
+                        <div class="agent-title">$10 Grubhub credit expires in 3 days</div>
+                        <div class="agent-desc">Your Amex Gold gives you $10/mo for Grubhub. You haven't used it. Order lunch — it's already paid for.</div>
+                    </div>
+                    <span class="agent-action">Use it</span>
+                </div>
+                <div class="agent-card savings">
+                    <div class="agent-icon">🏨</div>
+                    <div class="agent-body">
+                        <div class="agent-title">Booking that conference hotel? 4th night free.</div>
+                        <div class="agent-desc">Your card includes this perk. Book 4 nights through the portal and save $280 on the last night.</div>
+                    </div>
+                    <span class="agent-action">Book smart</span>
+                </div>
+                <div class="agent-card opportunity">
+                    <div class="agent-icon">🚗</div>
+                    <div class="agent-body">
+                        <div class="agent-title">$15 Uber Cash just renewed</div>
+                        <div class="agent-desc">Last month's expired unused. This month: use it for Uber Eats or rides. You're paying for it either way.</div>
+                    </div>
+                    <span class="agent-action">Open Uber</span>
+                </div>
+                <div class="agent-card urgent">
+                    <div class="agent-icon">⚠️</div>
+                    <div class="agent-body">
+                        <div class="agent-title">SaaS tool trial converts tomorrow — $49/mo</div>
+                        <div class="agent-desc">You signed up 13 days ago and logged in once. Cancel before midnight or it charges.</div>
+                    </div>
+                    <span class="agent-action">Cancel?</span>
+                </div>
+                <div class="agent-card gift">
+                    <div class="agent-icon">✈️</div>
+                    <div class="agent-body">
+                        <div class="agent-title">$300 travel credit expires Dec 31</div>
+                        <div class="agent-desc">You've used $0 of your annual travel credit. Book a flight, hotel, or even an Uber to the airport — it all counts.</div>
+                    </div>
+                    <span class="agent-action">Use it</span>
+                </div>
+            </div>
+            <div class="agent-footnote">
+                This is what your Savvy looks like. Personalized to your cards. Delivered via text.
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SOCIAL PROOF -->
+    <section class="proof-section">
+        <div class="proof-inner">
+            <div class="proof-header">
+                <h2>What early members <span class="serif">are saying</span></h2>
+            </div>
+            <div class="proof-stats">
+                <div class="proof-stat">
+                    <div class="proof-stat-value">$1,565</div>
+                    <div class="proof-stat-label">Average found per year</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-stat-value">Day 1</div>
+                    <div class="proof-stat-label">First savings discovered</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-stat-value">5 min</div>
+                    <div class="proof-stat-label">Setup time</div>
+                </div>
+            </div>
+            <div class="proof-quotes">
+                <div class="proof-card">
+                    <p class="proof-quote">"I have 5 cards. Couldn't tell you a single perk on any of them. Savvy texted me about $480/yr in credits I wasn't using. Set it up in 5 minutes, haven't thought about it since."</p>
+                    <div class="proof-author">
+                        <div class="proof-avatar">M</div>
                         <div>
-                            <div class="testimonial-name">Michelle T.</div>
-                            <div class="testimonial-role">Recovered $1,200</div>
+                            <div class="proof-name">Mike C.</div>
+                            <div class="proof-detail">Founder · 5 cards · Recovered $1,800</div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"It caught an $18/mo subscription I forgot about AND used my expiring hotel credit. I recovered $450 in month one."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">R</div>
+                <div class="proof-card">
+                    <p class="proof-quote">"I text Savvy 'which card at Costco?' while I'm walking in. It answers in 2 seconds. I'm earning 3× more points and I changed nothing about my life."</p>
+                    <div class="proof-author">
+                        <div class="proof-avatar">R</div>
                         <div>
-                            <div class="testimonial-name">Ryan K.</div>
-                            <div class="testimonial-role">Recovered $450</div>
+                            <div class="proof-name">Rachel K.</div>
+                            <div class="proof-detail">PM at a startup · 3 cards optimized</div>
                         </div>
                     </div>
                 </div>
-                <div class="testimonial-card">
-                    <p class="testimonial-quote">"Set it up in 2 minutes. Got a text the next day about a $300 travel credit expiring. That alone was worth it."</p>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">D</div>
+                <div class="proof-card">
+                    <p class="proof-quote">"It told me my card gets the 4th hotel night free. I was about to book a 4-night work trip. That one alert saved me $310. Paid for 15 months of Savvy."</p>
+                    <div class="proof-author">
+                        <div class="proof-avatar">D</div>
                         <div>
-                            <div class="testimonial-name">David L.</div>
-                            <div class="testimonial-role">Recovered $300</div>
+                            <div class="proof-name">David L.</div>
+                            <div class="proof-detail">Founder · Saved $310 on one trip</div>
                         </div>
                     </div>
                 </div>
@@ -837,93 +699,81 @@
         </div>
     </section>
 
-    <!-- SECTION 6: FAMILY ACCOUNTANT -->
-    <section class="households-section">
-        <div class="households-inner">
-            <div class="households-content">
-                <h2>No one has to be the <span class="serif">family accountant</span></h2>
-                <p>One person tracks everything while everyone else asks "are we okay?" Savvy gives everyone visibility — without the work, and without oversharing.</p>
-                <div class="households-benefits">
-                    <div class="households-benefit"><span class="benefit-check">✓</span><span>Share joint accounts automatically</span></div>
-                    <div class="households-benefit"><span class="benefit-check">✓</span><span>Keep personal accounts private</span></div>
-                    <div class="households-benefit"><span class="benefit-check">✓</span><span>Hide purchases — birthday gifts stay secret</span></div>
-                </div>
-                <p class="households-solo">Flying solo? Savvy works great for individuals too — just skip the sharing.</p>
-            </div>
-            <div class="households-visual">
-                <div class="household-card">
-                    <div class="household-avatar blue">A</div>
-                    <div class="household-name">Alex</div>
-                    <div class="household-sees">Sees shared + personal</div>
-                    <div class="household-accounts">
-                        <div class="household-account"><span>🔗 Joint Checking</span><span>$12,450</span></div>
-                        <div class="household-account"><span>🔗 Shared Savings</span><span>$71,870</span></div>
-                        <div class="household-account private"><span>🔒 Alex's Personal</span><span>•••••</span></div>
-                    </div>
-                </div>
-                <div class="household-card">
-                    <div class="household-avatar purple">J</div>
-                    <div class="household-name">Jordan</div>
-                    <div class="household-sees">Sees shared + personal</div>
-                    <div class="household-accounts">
-                        <div class="household-account"><span>🔗 Joint Checking</span><span>$12,450</span></div>
-                        <div class="household-account"><span>🔗 Shared Savings</span><span>$71,870</span></div>
-                        <div class="household-account private"><span>🔒 Jordan's Personal</span><span>•••••</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- SECURITY TRUST -->
+    <!-- 6. SECURITY -->
     <section class="trust-section">
         <div class="trust-inner">
             <div class="trust-badge">🔒 Bank-level encryption via Plaid</div>
-            <p class="trust-details">Read-only access · Your data is never sold · Used by Venmo, Robinhood, and Coinbase</p>
+            <p class="trust-details">Read-only access · Your data is never sold · Same infrastructure used by Venmo, Robinhood, and Coinbase</p>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section" id="waitlist">
-        <h2>Your money. <span class="serif">All of it.</span></h2>
-        <p>Stop losing money to forgetfulness. Start finding it instead.</p>
-        <div class="cta-guarantee-note">
-            🔒 Bank-level security · Plaid-certified · You control what we access
-        </div>
+    <!-- 7. FINAL CTA — waitlist -->
+    <section class="cta-section" id="signup">
+        <div class="cta-badge">Early Access — Limited Spots</div>
+        <h2>We're building Savvy <span class="serif">around you.</span></h2>
+        <p>We're onboarding a small group of early members first — learning your cards, your spending, your life — so the AI agents work perfectly from day one.</p>
         <form class="cta-form" id="waitlistForm">
-            <input type="email" id="emailInput" placeholder="Enter your email" required>
+            <input type="email" id="emailInput" placeholder="Your best email" required>
             <button type="submit" class="btn-primary" id="submitBtn">
-                Start Free Trial
+                Request Early Access
             </button>
         </form>
         <div class="form-message" id="formMessage"></div>
-        <p class="cta-note">Then $20/mo · Cancel anytime</p>
+        <div class="cta-guarantee-note">🔒 We'll never spam you · Unsubscribe anytime</div>
+        <p class="cta-note">Onboarding the first 200 members now. Early members get Savvy free.</p>
     </section>
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-logo">Savvy</div>
-        <p class="footer-text">© 2025 Savvy. Your AI CFO for credit card benefits.</p>
-        <nav class="footer-links" aria-label="Footer">
-            <a href="privacy.html">Privacy Policy</a>
-        </nav>
+        <p class="footer-text">© 2026 Savvy. AI agents for the perks you're already paying for.</p>
+        <nav class="footer-links" aria-label="Footer"><a href="privacy.html">Privacy Policy</a></nav>
     </footer>
 
     <script>
         // ============================================
-        // CONNECT TO YOUR APP & BACKEND
-        // Set these to your real URLs. "Start Free Trial" / "Start free" → app URL.
-        // Form at bottom can keep using waitlist API or your backend (see form handler below).
+        // CONFIG
         // ============================================
-        const SAVVY_APP_URL = 'https://app.withsavvy.ai/#sign-up';
         const SAVVY_SIGNUP_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:3000/api/signup'
-            : 'https://savvy-api-1kov.onrender.com/api/signup';  // Or your backend signup/trial endpoint
+            : 'https://savvy-api-1kov.onrender.com/api/signup';
 
-        document.querySelectorAll('.js-app-cta[data-app-url]').forEach(function (el) {
-            el.href = SAVVY_APP_URL;
+        // ============================================
+        // Waitlist form
+        // ============================================
+        const form = document.getElementById('waitlistForm');
+        const emailInput = document.getElementById('emailInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const formMessage = document.getElementById('formMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value.trim();
+            if (!email) return;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Requesting...';
+            try {
+                const response = await fetch(SAVVY_SIGNUP_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email }),
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    formMessage.textContent = "You're on the list. We'll be in touch soon.";
+                    formMessage.className = 'form-message success';
+                    emailInput.value = '';
+                } else {
+                    formMessage.textContent = data.error || 'Something went wrong. Please try again.';
+                    formMessage.className = 'form-message error';
+                }
+            } catch {
+                formMessage.textContent = 'Unable to connect. Please try again later.';
+                formMessage.className = 'form-message error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Request Early Access';
+            }
         });
 
         // Rotating notifications
@@ -939,14 +789,14 @@
         const counterEl = document.querySelector('.counter-amount');
         const counterContainer = document.querySelector('.evidence-total-value');
         const discoveryCards = document.querySelectorAll('.discovery-card');
-        const amounts = [50, 14.99, 200, 89, 40];
+        const amounts = [480, 400, 250, 360, 75];
         let currentAmount = 0;
         let animationRunning = false;
 
         function updateCounter(value) {
             counterContainer.style.opacity = '0.6';
             setTimeout(() => {
-                counterEl.textContent = value % 1 !== 0 ? value.toFixed(2) : value;
+                counterEl.textContent = value % 1 !== 0 ? value.toFixed(2) : value.toLocaleString();
                 counterContainer.style.opacity = '1';
             }, 800);
         }
@@ -961,82 +811,34 @@
             amounts.forEach((amount, i) => {
                 setTimeout(() => {
                     discoveryCards[i].classList.add('found');
-                    currentAmount = currentAmount + amount;
+                    currentAmount += amount;
                     updateCounter(currentAmount);
                 }, i * 2000 + 1000);
             });
-            const totalDuration = amounts.length * 2000 + 6000;
             setTimeout(() => {
                 animationRunning = false;
                 setTimeout(runDiscoverySequence, 4000);
-            }, totalDuration);
+            }, amounts.length * 2000 + 6000);
         }
 
         const evidenceObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    runDiscoverySequence();
-                    evidenceObserver.unobserve(entry.target);
-                }
+                if (entry.isIntersecting) { runDiscoverySequence(); evidenceObserver.unobserve(entry.target); }
             });
         }, { threshold: 0.3 });
         const evidenceSection = document.querySelector('.evidence-section');
         if (evidenceSection) evidenceObserver.observe(evidenceSection);
 
-        // Fade-in on scroll
-        const dashboardObserver = new IntersectionObserver((entries) => {
+        // Scroll fade-in
+        const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
+                if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
             });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.persona-card, .money-item, .stat-card, .testimonial-card, .household-card, .guarantee-card').forEach((el, i) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = `all 0.5s ease-out ${i * 0.05}s`;
-            dashboardObserver.observe(el);
-        });
-
-        // Form submission
-        const form = document.getElementById('waitlistForm');
-        const emailInput = document.getElementById('emailInput');
-        const submitBtn = document.getElementById('submitBtn');
-        const formMessage = document.getElementById('formMessage');
-
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = emailInput.value.trim();
-            if (!email) return;
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Joining...';
-            try {
-                const response = await fetch(SAVVY_SIGNUP_API, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email }),
-                });
-                const data = await response.json();
-                if (response.ok) {
-                    formMessage.textContent = "You're in! Redirecting to sign up…";
-                    formMessage.className = 'form-message success';
-                    const signupEmail = emailInput.value.trim();
-                    emailInput.value = '';
-                    setTimeout(() => {
-                        window.location.href = `https://app.withsavvy.ai/?email=${encodeURIComponent(signupEmail)}#sign-up`;
-                    }, 1200);
-                } else {
-                    formMessage.textContent = data.error || 'Something went wrong. Please try again.';
-                    formMessage.className = 'form-message error';
-                }
-            } catch {
-                formMessage.textContent = 'Unable to connect. Please try again later.';
-                formMessage.className = 'form-message error';
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Start Free Trial';
-            }
+        document.querySelectorAll('.step-card, .agent-card, .proof-card, .proof-stat').forEach((el, i) => {
+            el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+            el.style.transition = `all 0.5s ease-out ${i * 0.06}s`;
+            fadeObserver.observe(el);
         });
     </script>
 </body>
