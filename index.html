@@ -63,7 +63,7 @@
         }
         .logo { font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 0.6rem; }
         .logo-icon {
-            width: 36px; height: 36px; background: var(--bg-dark);
+            width: 36px; height: 36px; background: var(--accent);
             border-radius: 10px; display: flex; align-items: center; justify-content: center;
         }
         .logo-icon svg { width: 18px; height: 18px; color: white; }
@@ -114,7 +114,7 @@
             font-size: 0.82rem; color: var(--text-muted);
             display: inline-flex; align-items: center; gap: 0.35rem;
         }
-        .hero-micro svg { width: 14px; height: 14px; color: var(--text-muted); flex-shrink: 0; }
+        .hero-micro svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
 
         .hero-visual { position: relative; z-index: 1; }
         .phone-mockup {
@@ -222,7 +222,7 @@
         .evidence-total { padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .evidence-total-label { font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
         .evidence-total-value {
-            font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 700; color: white; line-height: 1;
+            font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 700; color: var(--accent); line-height: 1;
             margin-bottom: 0.75rem; font-variant-numeric: tabular-nums; transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .evidence-context { font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 0.4rem; }
@@ -254,7 +254,7 @@
         .step-num {
             display: inline-flex; align-items: center; justify-content: center;
             width: 40px; height: 40px; border-radius: 50%;
-            background: var(--bg-dark); color: white;
+            background: var(--accent); color: white;
             font-weight: 700; font-size: 1rem; margin-bottom: 1.25rem;
         }
         .step-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--text-primary); }
@@ -312,7 +312,7 @@
         .proof-header h2 .serif { font-weight: 400; font-style: italic; }
         .proof-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
         .proof-stat { padding: 1.25rem; }
-        .proof-stat-value { font-size: 2rem; font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums; margin-bottom: 0.25rem; }
+        .proof-stat-value { font-size: 2rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 0.25rem; }
         .proof-stat-label { font-size: 0.85rem; color: var(--text-secondary); }
         .proof-quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
         .proof-card {
@@ -365,7 +365,7 @@
             background: var(--bg-white);
         }
         .cta-form input[type="email"]:focus,
-        .cta-form input[type="tel"]:focus { border-color: var(--bg-dark); }
+        .cta-form input[type="tel"]:focus { border-color: var(--accent); }
         .cta-form .btn-primary { white-space: nowrap; padding: 0.85rem 1.5rem; font-size: 0.95rem; width: 100%; justify-content: center; }
         .form-message {
             font-size: 0.85rem; margin-bottom: 0.75rem; min-height: 1.5em;
