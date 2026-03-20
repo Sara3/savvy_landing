@@ -354,17 +354,21 @@
         .cta-section h2 .serif { font-weight: 400; font-style: italic; }
         .cta-section > p { color: var(--text-secondary); font-size: 1.1rem; max-width: 460px; margin: 0 auto 2rem; line-height: 1.6; }
         .cta-form {
-            display: flex; gap: 0.5rem; max-width: 420px; margin: 0 auto 1rem;
-            justify-content: center;
+            display: flex; flex-direction: column; gap: 0.5rem; max-width: 420px; margin: 0 auto 1rem;
         }
-        .cta-form input[type="email"] {
+        .cta-form-row {
+            display: flex; gap: 0.5rem;
+        }
+        .cta-form input[type="email"],
+        .cta-form input[type="tel"] {
             flex: 1; padding: 0.85rem 1.25rem; border-radius: var(--radius-full);
             border: 1px solid var(--border); font-size: 0.95rem;
             font-family: inherit; outline: none; transition: border-color 0.2s;
             background: var(--bg-white);
         }
-        .cta-form input[type="email"]:focus { border-color: var(--accent); }
-        .cta-form .btn-primary { white-space: nowrap; padding: 0.85rem 1.5rem; font-size: 0.95rem; }
+        .cta-form input[type="email"]:focus,
+        .cta-form input[type="tel"]:focus { border-color: var(--accent); }
+        .cta-form .btn-primary { white-space: nowrap; padding: 0.85rem 1.5rem; font-size: 0.95rem; width: 100%; justify-content: center; }
         .form-message {
             font-size: 0.85rem; margin-bottom: 0.75rem; min-height: 1.5em;
         }
@@ -398,7 +402,7 @@
             .lock-time { font-size: 4rem; }
             .discovery-left { gap: 0.75rem; }
             .discovery-icon { width: 38px; height: 38px; font-size: 1.1rem; }
-            .cta-form { flex-direction: column; }
+            .cta-form-row { flex-direction: column; }
         }
     </style>
 </head>
@@ -713,7 +717,10 @@
         <h2>We're building Savvy <span class="serif">around you.</span></h2>
         <p>We're onboarding a small group of early members first — learning your cards, your spending, your life — so the AI agents work perfectly from day one.</p>
         <form class="cta-form" id="waitlistForm">
-            <input type="email" id="emailInput" placeholder="Your best email" required>
+            <div class="cta-form-row">
+                <input type="email" id="emailInput" placeholder="Your best email" required>
+                <input type="tel" id="phoneInput" placeholder="Phone number" required>
+            </div>
             <button type="submit" class="btn-primary" id="submitBtn">
                 Request Early Access
             </button>
@@ -743,26 +750,48 @@
         // ============================================
         const form = document.getElementById('waitlistForm');
         const emailInput = document.getElementById('emailInput');
+        const phoneInput = document.getElementById('phoneInput');
         const submitBtn = document.getElementById('submitBtn');
         const formMessage = document.getElementById('formMessage');
+
+        // Auto-format phone number as user types
+        phoneInput.addEventListener('input', (e) => {
+            let digits = e.target.value.replace(/\D/g, '');
+            if (digits.length > 10) digits = digits.slice(0, 10);
+            if (digits.length >= 7) {
+                e.target.value = `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
+            } else if (digits.length >= 4) {
+                e.target.value = `(${digits.slice(0,3)}) ${digits.slice(3)}`;
+            } else if (digits.length > 0) {
+                e.target.value = `(${digits}`;
+            }
+        });
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = emailInput.value.trim();
+            const phoneRaw = phoneInput.value.replace(/\D/g, '');
             if (!email) return;
+            if (phoneRaw.length < 10) {
+                formMessage.textContent = 'Please enter a valid 10-digit phone number.';
+                formMessage.className = 'form-message error';
+                return;
+            }
+            const phone = '+1' + phoneRaw;
             submitBtn.disabled = true;
             submitBtn.textContent = 'Requesting...';
             try {
                 const response = await fetch(SAVVY_SIGNUP_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email }),
+                    body: JSON.stringify({ email, phone }),
                 });
                 const data = await response.json();
                 if (response.ok) {
                     formMessage.textContent = "You're on the list. We'll be in touch soon.";
                     formMessage.className = 'form-message success';
                     emailInput.value = '';
+                    phoneInput.value = '';
                 } else {
                     formMessage.textContent = data.error || 'Something went wrong. Please try again.';
                     formMessage.className = 'form-message error';
