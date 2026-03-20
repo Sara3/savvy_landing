@@ -716,29 +716,13 @@
         <h2>We're building Savvy <span class="serif">around you.</span></h2>
         <p>We're onboarding a small group of early members first — learning your cards, your spending, your life — so the AI agents work perfectly from day one.</p>
         <form class="cta-form" id="waitlistForm">
-            <!-- Step 1: Email + Phone -->
-            <div id="step1">
-                <div class="cta-form-row">
-                    <input type="email" id="emailInput" placeholder="Your best email" required>
-                    <input type="tel" id="phoneInput" placeholder="Phone number" required>
-                </div>
-                <button type="submit" class="btn-primary" id="submitBtn">
-                    Request Early Access
-                </button>
+            <div class="cta-form-row">
+                <input type="email" id="emailInput" placeholder="Your best email" required>
+                <input type="tel" id="phoneInput" placeholder="Phone number" required>
             </div>
-            <!-- Step 2: OTP Code -->
-            <div id="step2" style="display:none;">
-                <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.75rem;">We sent a code to <strong id="phoneSent" style="color: var(--text-primary);"></strong></p>
-                <div class="cta-form-row">
-                    <input type="text" id="codeInput" placeholder="6-digit code" maxlength="6" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" style="text-align: center; letter-spacing: 0.3em; font-size: 1.2rem; font-weight: 600;">
-                </div>
-                <button type="submit" class="btn-primary" id="verifyBtn">
-                    Verify & Join
-                </button>
-                <p style="margin-top: 0.6rem; font-size: 0.82rem; color: var(--text-muted);">
-                    Didn't get it? <a href="#" id="resendLink" style="color: var(--accent-dark); font-weight: 600; text-decoration: none;">Resend code</a>
-                </p>
-            </div>
+            <button type="submit" class="btn-primary" id="submitBtn">
+                Request Early Access
+            </button>
         </form>
         <div class="form-message" id="formMessage"></div>
         <div class="cta-guarantee-note">🔒 We'll never spam you · Unsubscribe anytime</div>
@@ -758,23 +742,13 @@
             : 'https://savvy-api-1kov.onrender.com';
 
         // ============================================
-        // Waitlist form — two-step with phone verification
+        // Waitlist form
         // ============================================
         const form = document.getElementById('waitlistForm');
-        const step1 = document.getElementById('step1');
-        const step2 = document.getElementById('step2');
         const emailInput = document.getElementById('emailInput');
         const phoneInput = document.getElementById('phoneInput');
-        const codeInput = document.getElementById('codeInput');
         const submitBtn = document.getElementById('submitBtn');
-        const verifyBtn = document.getElementById('verifyBtn');
         const formMessage = document.getElementById('formMessage');
-        const phoneSent = document.getElementById('phoneSent');
-        const resendLink = document.getElementById('resendLink');
-
-        let pendingEmail = '';
-        let pendingPhone = '';
-        let currentStep = 1;
 
         // Auto-format phone number as user types
         phoneInput.addEventListener('input', (e) => {
@@ -789,134 +763,41 @@
             }
         });
 
-        // Auto-advance when 6 digits entered
-        codeInput?.addEventListener('input', (e) => {
-            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
-        });
-
-        async function sendOTP(phone) {
-            const res = await fetch(`${SAVVY_API_BASE}/api/verify/send`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phone }),
-            });
-            return res.json();
-        }
-
-        async function checkOTP(phone, code) {
-            const res = await fetch(`${SAVVY_API_BASE}/api/verify/check`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ phone, code }),
-            });
-            return res.json();
-        }
-
-        async function submitSignup(email, phone) {
-            const res = await fetch(`${SAVVY_API_BASE}/api/signup`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, phone }),
-            });
-            return res.json();
-        }
-
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            formMessage.textContent = '';
-            formMessage.className = 'form-message';
-
-            if (currentStep === 1) {
-                // Step 1: Validate & send OTP
-                const email = emailInput.value.trim();
-                const phoneRaw = phoneInput.value.replace(/\D/g, '');
-                if (!email) return;
-                if (phoneRaw.length < 10) {
-                    formMessage.textContent = 'Please enter a valid 10-digit phone number.';
-                    formMessage.className = 'form-message error';
-                    return;
-                }
-                pendingEmail = email;
-                pendingPhone = '+1' + phoneRaw;
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Sending code...';
-                try {
-                    const result = await sendOTP(pendingPhone);
-                    if (result.success) {
-                        currentStep = 2;
-                        step1.style.display = 'none';
-                        step2.style.display = 'block';
-                        phoneSent.textContent = phoneInput.value;
-                        formMessage.textContent = '';
-                        codeInput.focus();
-                    } else {
-                        formMessage.textContent = result.error || 'Failed to send code. Try again.';
-                        formMessage.className = 'form-message error';
-                    }
-                } catch {
-                    formMessage.textContent = 'Unable to connect. Please try again later.';
-                    formMessage.className = 'form-message error';
-                } finally {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Request Early Access';
-                }
-            } else {
-                // Step 2: Verify OTP & signup
-                const code = codeInput.value.trim();
-                if (code.length < 6) {
-                    formMessage.textContent = 'Please enter the 6-digit code.';
-                    formMessage.className = 'form-message error';
-                    return;
-                }
-                verifyBtn.disabled = true;
-                verifyBtn.textContent = 'Verifying...';
-                try {
-                    const result = await checkOTP(pendingPhone, code);
-                    if (result.verified) {
-                        // Verified — submit the signup
-                        await submitSignup(pendingEmail, pendingPhone);
-                        formMessage.textContent = "You're verified and on the list! We'll be in touch soon.";
-                        formMessage.className = 'form-message success';
-                        step2.style.display = 'none';
-                        // Reset for next use
-                        emailInput.value = '';
-                        phoneInput.value = '';
-                        codeInput.value = '';
-                        currentStep = 1;
-                        step1.style.display = 'block';
-                    } else {
-                        formMessage.textContent = result.error || 'Invalid code. Please try again.';
-                        formMessage.className = 'form-message error';
-                    }
-                } catch {
-                    formMessage.textContent = 'Unable to verify. Please try again.';
-                    formMessage.className = 'form-message error';
-                } finally {
-                    verifyBtn.disabled = false;
-                    verifyBtn.textContent = 'Verify & Join';
-                }
+            const email = emailInput.value.trim();
+            const phoneRaw = phoneInput.value.replace(/\D/g, '');
+            if (!email) return;
+            if (phoneRaw.length < 10) {
+                formMessage.textContent = 'Please enter a valid 10-digit phone number.';
+                formMessage.className = 'form-message error';
+                return;
             }
-        });
-
-        // Resend link
-        resendLink?.addEventListener('click', async (e) => {
-            e.preventDefault();
-            formMessage.textContent = 'Sending new code...';
-            formMessage.className = 'form-message';
+            const phone = '+1' + phoneRaw;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Requesting...';
             try {
-                const result = await sendOTP(pendingPhone);
-                if (result.success) {
-                    formMessage.textContent = 'New code sent!';
+                const response = await fetch(`${SAVVY_API_BASE}/api/signup`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, phone }),
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    formMessage.textContent = "You're on the list. We'll be in touch soon.";
                     formMessage.className = 'form-message success';
-                    codeInput.value = '';
-                    codeInput.focus();
+                    emailInput.value = '';
+                    phoneInput.value = '';
                 } else {
-                    formMessage.textContent = result.error || 'Failed to resend. Try again.';
+                    formMessage.textContent = data.error || 'Something went wrong. Please try again.';
                     formMessage.className = 'form-message error';
                 }
             } catch {
-                formMessage.textContent = 'Unable to connect.';
+                formMessage.textContent = 'Unable to connect. Please try again later.';
                 formMessage.className = 'form-message error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Request Early Access';
             }
         });
 
