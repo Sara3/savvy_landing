@@ -32,7 +32,7 @@
             --purple-light: #ede9fe;
             --border: #e7e5e4;
             --border-light: #f5f5f4;
-            --shadow-accent: 0 4px 14px rgba(16, 185, 129, 0.3);
+            --shadow-accent: 0 4px 14px rgba(0, 0, 0, 0.08);
             --radius-sm: 12px;
             --radius-md: 16px;
             --radius-lg: 24px;
@@ -63,9 +63,8 @@
         }
         .logo { font-size: 1.4rem; font-weight: 700; display: flex; align-items: center; gap: 0.6rem; }
         .logo-icon {
-            width: 36px; height: 36px; background: var(--accent);
+            width: 36px; height: 36px; background: var(--bg-dark);
             border-radius: 10px; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
         }
         .logo-icon svg { width: 18px; height: 18px; color: white; }
         .nav-cta {
@@ -84,8 +83,7 @@
         }
         .hero::before {
             content: ''; position: absolute; inset: 0;
-            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.08), transparent),
-                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(16, 185, 129, 0.05), transparent);
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 0, 0, 0.02), transparent);
             pointer-events: none;
         }
         .hero-content { max-width: 660px; margin-bottom: 3rem; position: relative; z-index: 1; }
@@ -98,16 +96,16 @@
             font-size: 1.15rem; color: var(--text-secondary);
             margin-bottom: 2rem; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.65;
         }
-        .hero-sub strong { color: var(--accent-dark); font-weight: 600; }
+        .hero-sub strong { color: var(--text-primary); font-weight: 600; }
         .btn-primary {
-            background: var(--accent); color: white;
+            background: var(--bg-dark); color: white;
             padding: 1rem 2rem; border-radius: var(--radius-full);
             font-weight: 600; font-size: 1.05rem; text-decoration: none;
             display: inline-flex; align-items: center; gap: 0.6rem;
             transition: all 0.25s; border: none; cursor: pointer;
             box-shadow: var(--shadow-accent);
         }
-        .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+        .btn-primary:hover { background: var(--bg-dark-subtle); transform: translateY(-1px); }
         .hero-micro {
             display: flex; align-items: center; justify-content: center;
             gap: 1.25rem; margin-top: 1rem; flex-wrap: wrap;
@@ -116,7 +114,7 @@
             font-size: 0.82rem; color: var(--text-muted);
             display: inline-flex; align-items: center; gap: 0.35rem;
         }
-        .hero-micro svg { width: 14px; height: 14px; color: var(--accent); flex-shrink: 0; }
+        .hero-micro svg { width: 14px; height: 14px; color: var(--text-muted); flex-shrink: 0; }
 
         .hero-visual { position: relative; z-index: 1; }
         .phone-mockup {
@@ -192,7 +190,7 @@
         .evidence-inner { max-width: 640px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
         .evidence-header { margin-bottom: 2.5rem; }
         .evidence-header h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 0.6rem; letter-spacing: -0.02em; }
-        .evidence-header h2 .serif { font-weight: 400; font-style: italic; color: var(--accent); }
+        .evidence-header h2 .serif { font-weight: 400; font-style: italic; color: rgba(255,255,255,0.7); }
         .evidence-header p { font-size: 1rem; color: rgba(255,255,255,0.5); }
         .discovery-cards { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2.5rem; }
         .discovery-card {
@@ -202,9 +200,9 @@
             transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), background 1.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 1.2s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative; overflow: hidden; opacity: 0.4;
         }
-        .discovery-card.found { opacity: 1; background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.15); }
-        .discovery-card.found .discovery-amount { color: var(--accent); }
-        .discovery-card.found .discovery-icon { background: rgba(16, 185, 129, 0.12); }
+        .discovery-card.found { opacity: 1; background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.12); }
+        .discovery-card.found .discovery-amount { color: #6ee7b7; }
+        .discovery-card.found .discovery-icon { background: rgba(255,255,255,0.1); }
         .discovery-left { display: flex; align-items: center; gap: 1rem; }
         .discovery-icon {
             width: 44px; height: 44px; border-radius: 12px;
@@ -224,7 +222,7 @@
         .evidence-total { padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.08); }
         .evidence-total-label { font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
         .evidence-total-value {
-            font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 700; color: var(--accent); line-height: 1;
+            font-size: clamp(3rem, 8vw, 4.5rem); font-weight: 700; color: white; line-height: 1;
             margin-bottom: 0.75rem; font-variant-numeric: tabular-nums; transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .evidence-context { font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 0.4rem; }
@@ -232,12 +230,12 @@
         .evidence-payoff { font-size: 0.9rem; color: rgba(255,255,255,0.4); margin-bottom: 2rem; }
         .evidence-cta {
             display: inline-flex; align-items: center; gap: 0.6rem;
-            background: var(--accent); color: white;
+            background: white; color: var(--bg-dark);
             padding: 0.9rem 1.75rem; border-radius: var(--radius-full);
             font-weight: 600; font-size: 1rem;
-            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4); transition: all 0.25s; text-decoration: none;
+            transition: all 0.25s; text-decoration: none;
         }
-        .evidence-cta:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(16, 185, 129, 0.5); }
+        .evidence-cta:hover { background: rgba(255,255,255,0.9); transform: translateY(-1px); }
 
         /* HOW IT WORKS */
         .how-section { padding: 5rem 2rem 5.5rem; background: var(--bg-white); border-top: 1px solid var(--border-light); }
@@ -252,19 +250,19 @@
             border-radius: var(--radius-md); padding: 2rem 1.5rem 1.75rem;
             text-align: center; transition: all 0.3s;
         }
-        .step-card:hover { border-color: rgba(16,185,129,0.3); box-shadow: 0 8px 30px rgba(16,185,129,0.08); }
+        .step-card:hover { border-color: var(--border); box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
         .step-num {
             display: inline-flex; align-items: center; justify-content: center;
             width: 40px; height: 40px; border-radius: 50%;
-            background: var(--accent); color: white;
+            background: var(--bg-dark); color: white;
             font-weight: 700; font-size: 1rem; margin-bottom: 1.25rem;
         }
         .step-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--text-primary); }
         .step-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; }
         .step-time {
             display: inline-flex; align-items: center; gap: 0.35rem;
-            font-size: 0.78rem; color: var(--accent-dark); font-weight: 600;
-            margin-top: 0.75rem; background: var(--accent-light);
+            font-size: 0.78rem; color: var(--text-secondary); font-weight: 600;
+            margin-top: 0.75rem; background: var(--bg-subtle);
             padding: 0.25rem 0.7rem; border-radius: var(--radius-full);
         }
 
@@ -314,7 +312,7 @@
         .proof-header h2 .serif { font-weight: 400; font-style: italic; }
         .proof-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
         .proof-stat { padding: 1.25rem; }
-        .proof-stat-value { font-size: 2rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 0.25rem; }
+        .proof-stat-value { font-size: 2rem; font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums; margin-bottom: 0.25rem; }
         .proof-stat-label { font-size: 0.85rem; color: var(--text-secondary); }
         .proof-quotes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
         .proof-card {
@@ -341,11 +339,11 @@
         /* CTA */
         .cta-section {
             padding: 5rem 2rem; text-align: center;
-            background: linear-gradient(180deg, var(--bg-white) 0%, var(--accent-light) 100%);
+            background: var(--bg-primary);
         }
         .cta-badge {
             display: inline-flex; align-items: center; gap: 0.5rem;
-            background: var(--bg-dark); color: var(--accent);
+            background: var(--bg-dark); color: rgba(255,255,255,0.8);
             font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
             padding: 0.4rem 1rem; border-radius: var(--radius-full);
             margin-bottom: 1.5rem;
@@ -367,7 +365,7 @@
             background: var(--bg-white);
         }
         .cta-form input[type="email"]:focus,
-        .cta-form input[type="tel"]:focus { border-color: var(--accent); }
+        .cta-form input[type="tel"]:focus { border-color: var(--bg-dark); }
         .cta-form .btn-primary { white-space: nowrap; padding: 0.85rem 1.5rem; font-size: 0.95rem; width: 100%; justify-content: center; }
         .form-message {
             font-size: 0.85rem; margin-bottom: 0.75rem; min-height: 1.5em;
@@ -376,7 +374,7 @@
         .form-message.error { color: var(--danger-text); }
         .cta-guarantee-note {
             display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-            font-size: 0.82rem; color: var(--accent-dark); font-weight: 600; margin-bottom: 0.75rem;
+            font-size: 0.82rem; color: var(--text-secondary); font-weight: 600; margin-bottom: 0.75rem;
         }
         .cta-note { font-size: 0.8rem; color: var(--text-muted); }
 
@@ -386,7 +384,7 @@
         .footer-text { font-size: 0.8rem; color: var(--text-muted); }
         .footer-links { margin-top: 0.75rem; display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
         .footer-links a { font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; }
-        .footer-links a:hover { color: var(--accent); }
+        .footer-links a:hover { color: var(--text-primary); }
 
         /* RESPONSIVE */
         @media (max-width: 900px) {
@@ -543,7 +541,7 @@
                 <div class="evidence-total-label">Found so far</div>
                 <div class="evidence-total-value">$<span class="counter-amount">0</span></div>
                 <p class="evidence-context">That's <strong>$1,565 in year one</strong> — from 4 cards and 5 minutes of setup.</p>
-                <p class="evidence-payoff">You're already paying for this. <strong style="color: var(--accent);">Savvy just makes sure you actually use it.</strong></p>
+                <p class="evidence-payoff">You're already paying for this. <strong style="color: white;">Savvy just makes sure you actually use it.</strong></p>
                 <a href="#signup" class="evidence-cta">
                     Get early access
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
