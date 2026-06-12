@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy — Savvy</title>
+    <title>Privacy &amp; Trust — Savvy</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310b981' stroke-width='2.5'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -128,6 +128,35 @@
             align-items: center;
             gap: 0.35rem;
         }
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.7;
+        }
+
+        /* ADVANCE-NOTICE BAND */
+        .notice-band {
+            max-width: 680px;
+            margin: 0 auto 3.5rem;
+            background: var(--accent-light);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: var(--radius-md);
+            padding: 1.1rem 1.5rem;
+            text-align: center;
+        }
+        .notice-band p { font-size: 0.95rem; color: #065f46; line-height: 1.6; }
+        .notice-band strong { color: #064e3b; }
+        .notice-kicker {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--accent-dark);
+            margin-bottom: 0.35rem;
+        }
 
         /* LAYOUT */
         .page-body {
@@ -176,6 +205,15 @@
             background: var(--accent-light);
             border-left-color: var(--accent);
         }
+        .toc-group {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            padding: 0.9rem 0.75rem 0.25rem;
+        }
+        .toc-list .toc-group:first-child { padding-top: 0; }
         .toc-contact {
             margin-top: 1.5rem;
             padding: 1rem;
@@ -366,6 +404,12 @@
             .page-body { grid-template-columns: 1fr; gap: 2rem; }
             .toc { display: none; }
             .hero { padding: 8rem 1.5rem 3rem; }
+            .notice-band { margin: 0 1.5rem 2.5rem; }
+        }
+        @media (max-width: 600px) {
+            .rights-grid { grid-template-columns: 1fr; }
+            .data-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .data-table td:first-child { white-space: normal; }
         }
     </style>
 </head>
@@ -380,15 +424,16 @@
             </div>
             Savvy
         </a>
-        <a href="index.html#waitlist" class="nav-cta">Get Early Access</a>
+        <a href="https://app.withsavvy.ai/#sign-up" class="nav-cta">Get started free</a>
     </nav>
 
     <div class="hero">
         <div class="hero-eyebrow">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            Legal
+            Privacy &amp; Trust
         </div>
-        <h1>Privacy <span class="serif">Policy</span></h1>
+        <h1>Your data has one job:<br><span class="serif">working for you.</span></h1>
+        <p class="hero-sub">We use it to map your benefits, match your transactions, and nudge you before money expires. Never sold. Never used for ads. Shared only with the partners that run Savvy — each getting the minimum it needs.</p>
         <div class="hero-meta">
             <span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -396,7 +441,7 @@
             </span>
             <span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                Last updated: January 1, 2025
+                Last updated: June 12, 2026
             </span>
             <span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
@@ -405,12 +450,24 @@
         </div>
     </div>
 
+    <div class="notice-band">
+        <p>
+            <span class="notice-kicker">Our standing commitment</span>
+            <strong>How we use your data changes on this page before it changes in the product.</strong>
+        </p>
+    </div>
+
     <div class="page-body">
 
         <!-- TABLE OF CONTENTS -->
         <aside class="toc">
             <div class="toc-label">On this page</div>
             <ul class="toc-list" id="tocList">
+                <li class="toc-group">Trust</li>
+                <li><a href="#how-today">How Savvy uses your data</a></li>
+                <li><a href="#partners">Who we work with</a></li>
+                <li><a href="#byo-ai">Bring your own AI</a></li>
+                <li class="toc-group">The policy</li>
                 <li><a href="#overview">Overview</a></li>
                 <li><a href="#information-we-collect">Information We Collect</a></li>
                 <li><a href="#how-we-use">How We Use Your Information</a></li>
@@ -430,6 +487,61 @@
 
         <!-- CONTENT -->
         <main class="content">
+
+            <div class="section" id="how-today">
+                <div class="section-number">The facts</div>
+                <h2>How Savvy works with your data — today</h2>
+                <p>Plain facts about where AI sits in Savvy right now — what it reads today, and what it doesn't.</p>
+                <ul>
+                    <li><strong>Most of Savvy's AI reads card data, not your data.</strong> The heavy lifting happens on issuer material — benefit guides, terms pages, fine print — building the catalog of what every card offers. That work reads issuer pages, not your accounts.</li>
+                    <li><strong>Your transactions are matched by Savvy's own deterministic engine.</strong> Bank activity syncs in via Plaid and gets matched to benefits by rules Savvy wrote — code, not a model. There is no AI model in that path today.</li>
+                    <li><strong>AI processes the content you send to Savvy.</strong> Forward an email — a gift card, a receipt, a trial confirmation — or text a question, and AI reads that content to do the job you asked.</li>
+                    <li><strong>All AI processing happens via API</strong> — and API data is not used to train the providers' models.</li>
+                </ul>
+                <p>The word "today" is deliberate. Savvy keeps shipping, and future features may put AI to work in more places. When that happens, you'll read it here first: how we use your data changes on this page before it changes in the product.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="partners">
+                <div class="section-number">The partners</div>
+                <h2>Who we work with — and why</h2>
+                <p>Savvy doesn't run alone. A small set of partners powers the product, and each one gets the minimum it needs to do its job. Here's the roster:</p>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Partner</th>
+                            <th>What it does</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Plaid</td><td>Read-only bank connection. Savvy never sees or stores your bank credentials.</td></tr>
+                        <tr><td>Clerk</td><td>Secure sign-in.</td></tr>
+                        <tr><td>Supabase</td><td>Encrypted data storage.</td></tr>
+                        <tr><td>Twilio</td><td>The texts Savvy sends and receives.</td></tr>
+                        <tr><td>OpenAI</td><td>AI that reads card catalogs and processes content you send — via API, not used to train models.</td></tr>
+                        <tr><td>Cloudflare</td><td>Hosting and email routing.</td></tr>
+                        <tr><td>Render</td><td>Backend hosting.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section" id="byo-ai">
+                <div class="section-number">The feature</div>
+                <h2>Bring your own AI</h2>
+                <p>Your benefits shouldn't be locked inside our app. Savvy provides an MCP server — the open standard that lets AI assistants connect to outside tools — so you can plug Savvy into the assistant you already use.</p>
+                <p>Connect Claude or ChatGPT and ask it to check your benefits: which card to use tonight, what's expiring this month. Your assistant reads your Savvy data under your own account and permission — and you can revoke that access at any time.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div class="section">
+                <div class="section-number">The policy</div>
+                <h2>The legal details</h2>
+                <p>Everything above, in policy form — what we collect, how we use it, the rights you hold, and how to reach us. This is the full Privacy Policy of Savvy Financial Technologies, Inc.</p>
+            </div>
 
             <div class="section" id="overview">
                 <div class="section-number">01</div>
@@ -538,7 +650,7 @@
                 <h2>Sharing Your Information</h2>
                 <p>We do not sell your personal information. We share data only in the following limited circumstances:</p>
                 <ul>
-                    <li><strong>Service providers</strong> — Trusted vendors who help us operate Savvy (e.g., cloud hosting, email delivery, analytics). These providers are contractually required to protect your data and may not use it for their own purposes.</li>
+                    <li><strong>Service providers</strong> — Trusted vendors who help us operate Savvy (e.g., cloud hosting, email delivery, analytics). These providers are contractually required to protect your data and may not use it for their own purposes. The current roster is listed in <a href="#partners" style="color:var(--accent-dark);font-weight:600;">Who we work with</a> above.</li>
                     <li><strong>Plaid</strong> — To facilitate bank account connectivity as described above.</li>
                     <li><strong>Household members (if you choose)</strong> — If you invite a household member, they can see shared accounts and joint balances. Private accounts remain hidden. You control what is shared.</li>
                     <li><strong>Legal requirements</strong> — If required by law, court order, or to protect the rights and safety of Savvy or others, we may disclose information as legally required.</li>
@@ -630,6 +742,7 @@
                 <div class="section-number">10</div>
                 <h2>Changes to This Policy</h2>
                 <p>We may update this Privacy Policy from time to time. When we make material changes, we will notify you by email (sent to the address associated with your account) and update the "Last updated" date at the top of this page at least 30 days before the changes take effect.</p>
+                <p>And the standing commitment from the top of this page applies here too: how we use your data changes on this page before it changes in the product.</p>
                 <p>Your continued use of Savvy after any changes constitutes your acceptance of the updated policy. If you do not agree to the updated policy, you may close your account.</p>
             </div>
 
@@ -654,7 +767,7 @@
         <div class="footer-logo">Savvy</div>
         <p class="footer-text">© 2025 Savvy Financial Technologies, Inc.</p>
         <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a>
+            <a href="privacy.html">Privacy &amp; Trust</a>
             <a href="#">Terms of Service</a>
             <a href="mailto:privacy@savvyfinance.io">Contact</a>
         </div>
