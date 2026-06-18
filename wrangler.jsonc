@@ -10,5 +10,13 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
-  ]
+  ],
+  "env": {
+    "staging": {
+      "name": "savvylanding-staging"
+    },
+    "production": {
+      "name": "savvylanding"
+    }
+  }
 }
