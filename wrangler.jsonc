@@ -1,6 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "savvylanding",
+  "account_id": "f89e8b96a7ab4d2e32358eda5ca16ec6",
   "compatibility_date": "2026-06-14",
   "observability": {
     "enabled": true
