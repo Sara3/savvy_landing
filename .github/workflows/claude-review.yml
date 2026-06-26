@@ -126,6 +126,6 @@ jobs:
             ROUTE_HUMAN) if [ -n "$PR_NUMBER" ]; then gh issue edit "$PR_NUMBER" --add-label needs-human-review || true; fi
                          echo "::error::Needs human review (workflow-edit or incomplete review)." ; exit 1 ;;
             AUTH_FAIL) if [ -n "$PR_NUMBER" ]; then gh issue edit "$PR_NUMBER" --add-label needs-human-review || true; fi
-                       echo "::error::🔑 Reviewer AUTH FAILED — 401 Invalid bearer token. The CLAUDE_CODE_OAUTH_TOKEN secret is invalid/expired. Regenerate it: run 'claude setup-token', then set it newline-safe with  printf '%s' "\$TOKEN" | gh secret set CLAUDE_CODE_OAUTH_TOKEN -R <owner/repo>" ; exit 1 ;;
+                       echo "::error::🔑 Reviewer AUTH FAILED — 401 Invalid bearer token. The CLAUDE_CODE_OAUTH_TOKEN secret is invalid/expired. Regenerate it: run 'claude setup-token', then set it newline-safe with  printf '%s' <NEW_TOKEN> | gh secret set CLAUDE_CODE_OAUTH_TOKEN -R <owner/repo>" ; exit 1 ;;
             *) echo "::error::Review did not run or errored ($TOKEN)." ; exit 1 ;;
           esac
