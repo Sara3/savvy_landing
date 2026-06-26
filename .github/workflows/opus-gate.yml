@@ -56,8 +56,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -uo pipefail
           PR_NUMBER="${{ github.event.pull_request.number }}"
-          FILES=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json files -q '.files[].path')
+          FILES=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json files -q '.files[].path') \
+            || { echo "::error::gh pr view failed — cannot determine risk tier; blocking."; exit 1; }
 
           HIGH_RISK=false
           while IFS= read -r file; do
@@ -180,6 +182,8 @@ jobs:
             PASS) echo "Review ran and succeeded." ; exit 0 ;;
             ROUTE_HUMAN) if [ -n "$PR_NUMBER" ]; then gh issue edit "$PR_NUMBER" --add-label needs-human-review || true; fi
                          echo "::error::Needs human review (workflow-edit or incomplete review)." ; exit 1 ;;
+            AUTH_FAIL) if [ -n "$PR_NUMBER" ]; then gh issue edit "$PR_NUMBER" --add-label needs-human-review || true; fi
+                       echo "::error::🔑 Reviewer AUTH FAILED — 401 Invalid bearer token. The CLAUDE_CODE_OAUTH_TOKEN secret is invalid/expired. Regenerate it: run 'claude setup-token', then set it newline-safe with  printf '%s' "\$TOKEN" | gh secret set CLAUDE_CODE_OAUTH_TOKEN -R <owner/repo>" ; exit 1 ;;
             *) echo "::error::Review did not run or errored ($TOKEN)." ; exit 1 ;;
           esac
 
