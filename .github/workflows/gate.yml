@@ -91,6 +91,9 @@ jobs:
             -- bash -c '
               set -euo pipefail
               GL_VERSION="8.30.1"
+              if command -v gitleaks >/dev/null 2>&1 && gitleaks version 2>/dev/null | grep -q "${GL_VERSION}"; then
+                echo "gitleaks ${GL_VERSION} already installed — skipping download"; exit 0
+              fi
               GL_BASE="https://github.com/gitleaks/gitleaks/releases/download/v${GL_VERSION}"
               GL_TARBALL="gitleaks_${GL_VERSION}_linux_x64.tar.gz"
               GL_SUMS="gitleaks_${GL_VERSION}_checksums.txt"
@@ -98,7 +101,7 @@ jobs:
               curl -fsSL "${GL_BASE}/${GL_TARBALL}" -o "${GL_TARBALL}"
               curl -fsSL "${GL_BASE}/${GL_SUMS}"    -o "${GL_SUMS}"
               grep "  ${GL_TARBALL}\$" "${GL_SUMS}" | sha256sum -c -
-              tar -xzf "${GL_TARBALL}" -C /usr/local/bin gitleaks
+              tar --overwrite -xzf "${GL_TARBALL}" -C /usr/local/bin gitleaks
               chmod +x /usr/local/bin/gitleaks
               gitleaks version
             '
