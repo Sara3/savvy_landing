@@ -20,6 +20,14 @@ name: Gate
 #
 # Required-check contexts preserved:
 #   "Gitleaks (secret scan)"   workflow-safety   review   opus-gate
+#
+# Type-C hardening (propagated from backend, 2026-06-27):
+#   gitleaks: exit-17 pins real leaks (Type B); all other non-zero exit codes are
+#     infra crashes (Type C) — routed through gate_typed_check.sh + gate_infra_escalate.sh.
+#   floor gh calls (gh pr view / gh pr diff) wrapped in gh_retry.sh (2 retries, 5s sleep);
+#     persistent failure routes through gate_infra_escalate.sh.
+#   reviewer AUTH_FAIL and crash paths in review + opus-gate route through
+#     gate_infra_escalate.sh (distinct label + deduped tracking issue + "couldn't verify" comment).
 
 on:
   pull_request:
@@ -42,24 +50,132 @@ permissions:
 jobs:
 
   # ---------------------------------------------------------------------------
-  # gitleaks — secret scan (HARD-BLOCK on any new secret in PR diff)
-  # Name MUST be "Gitleaks (secret scan)" — required-check context.
+  # gitleaks — secret scan. Name MUST be "Gitleaks (secret scan)" — required check.
+  #
+  # B/C SPLIT BY EXIT CODE (gitleaks-action@v2 CONFLATED these — the G1 fix):
+  #   exit 0  = clean                      -> CLEAN (pass)
+  #   exit 17 = leak found (REAL finding)  -> Type B: needs-human-review, NEVER
+  #             retried (a leaked secret doesn't un-leak on a re-run), NEVER fixed.
+  #   exit 2+ / signal-kill / timeout /
+  #   exit 1 (crash) = Type C infra (crash, license error, bad config, download fail):
+  #             retried 2x via gate_typed_check, then gate_infra_escalate
+  #             (gate-infra-error label + dedup issue + "couldn't verify" comment).
+  #             NEVER mistaken for a finding, NEVER auto-passed.
+  #
+  # We call the gitleaks CLI directly (pinned + checksum-verified) so we own the
+  # exit-code contract; the action surfaces one non-zero code for both leak AND
+  # crash, making the B/C split impossible. Binary install is itself Type C (wrapped).
   # ---------------------------------------------------------------------------
   gitleaks:
     name: Gitleaks (secret scan)
     runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
     timeout-minutes: 10
+    outputs:
+      infra_error: ${{ steps.agg.outputs.infra_error }}
     steps:
       - name: Checkout (full history for base sha resolution)
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Scan PR commits for secrets (base..head only)
-        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7  # v2
+      # Install is a Type-C source (network / GitHub release / checksum). Any
+      # non-zero exit => INFRA (findings-codes ""), retried, never a "finding".
+      - name: Install gitleaks CLI (typed — install failure = Type C)
+        id: install
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITLEAKS_LOG_OPTS: "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash .github/scripts/gate_typed_check.sh \
+            --name gitleaks-install --findings-codes "" --retries 2 \
+            --pr "${{ github.event.pull_request.number }}" \
+            -- bash -c '
+              set -euo pipefail
+              GL_VERSION="8.30.1"
+              if command -v gitleaks >/dev/null 2>&1 && gitleaks version 2>/dev/null | grep -q "${GL_VERSION}"; then
+                echo "gitleaks ${GL_VERSION} already installed — skipping download"; exit 0
+              fi
+              GL_BASE="https://github.com/gitleaks/gitleaks/releases/download/v${GL_VERSION}"
+              GL_TARBALL="gitleaks_${GL_VERSION}_linux_x64.tar.gz"
+              GL_SUMS="gitleaks_${GL_VERSION}_checksums.txt"
+              cd /tmp
+              curl -fsSL "${GL_BASE}/${GL_TARBALL}" -o "${GL_TARBALL}"
+              curl -fsSL "${GL_BASE}/${GL_SUMS}"    -o "${GL_SUMS}"
+              grep "  ${GL_TARBALL}\$" "${GL_SUMS}" | sha256sum -c -
+              tar --overwrite -xzf "${GL_TARBALL}" -C /usr/local/bin gitleaks
+              chmod +x /usr/local/bin/gitleaks
+              gitleaks version
+            '
+
+      # Scan the PR commit range. CRITICAL: gitleaks returns exit 1 for BOTH a real
+      # leak (default --exit-code) AND a fatal error (bad config, git error) — the
+      # very conflation we must avoid. So we pin findings to a DISTINCTIVE exit code:
+      #   --exit-code 17  => a real leak returns 17 (verified locally)
+      #   a crash/fatal   returns 1 (gitleaks/cobra default) — NOT 17
+      #   clean           returns 0
+      # --findings-codes "17": only 17 = FINDINGS (Type B, never retried). 1 / 2+ /
+      # signal-kill all classify as INFRA (Type C, retried then infra-escalated).
+      - name: Scan PR commits for secrets (base..head, typed B/C split)
+        id: scan
+        if: steps.install.outputs.infra_error != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash .github/scripts/gate_typed_check.sh \
+            --name gitleaks --findings-codes "17" --retries 2 --retry-sleep 10 \
+            --pr "${{ github.event.pull_request.number }}" \
+            -- gitleaks git . \
+                 --log-opts "${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}" \
+                 --redact --no-banner --exit-code 17
+
+      # Type-B: a real leak (outcome=findings). Add the human label + a "rotate &
+      # remove from history, do NOT re-run" comment. This is a code/secret rejection,
+      # NOT infra — so NO gate-infra-error label, NO retry.
+      # NOTE: always() is REQUIRED — the scan step EXITS 1 on a real leak (FINDINGS),
+      # and without always() GitHub implicitly ANDs `success()` and SKIPS this step.
+      - name: "Type-B block: real leak found — escalate to human (never retry/fix)"
+        if: always() && steps.scan.outputs.outcome == 'findings'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -uo pipefail
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+          REPO="$GITHUB_REPOSITORY"
+          gh issue edit "$PR_NUMBER" --add-label needs-human-review --repo "$REPO" || true
+          MARKER="<!-- gate-gitleaks-b-block -->"
+          BODY_FILE="$(mktemp)"
+          {
+            echo "$MARKER"
+            echo "### Gitleaks — real secret detected (Type B hard-block)"
+            echo ""
+            echo "Gitleaks found one or more secrets in this PR's commit range. Per the gate's Type-B contract:"
+            echo "- **Hard-blocked** — not auto-merged. This is a **secret rejection, not an infra error** (no \`gate-infra-error\`)."
+            echo "- **Cannot be auto-fixed** by any model and **will not be retried** — a leaked secret doesn't un-leak on a re-run."
+            echo ""
+            echo "**Action required:** rotate the secret at its source, remove it from git history (\`git filter-repo\` / BFG), force-push the cleaned branch, then re-run."
+            echo ""
+            echo "_— savvy gate · Type-B escalation (gitleaks)_"
+          } > "$BODY_FILE"
+          CID=$(gh api "repos/${REPO}/issues/${PR_NUMBER}/comments" --paginate \
+            --jq ".[]|select(.body|contains(\"$MARKER\"))|.id" 2>/dev/null | head -1)
+          if [ -n "$CID" ]; then
+            gh api -X PATCH "repos/${REPO}/issues/comments/${CID}" -f body="$(cat "$BODY_FILE")" >/dev/null 2>&1 || true
+          else
+            gh pr comment "$PR_NUMBER" --body-file "$BODY_FILE" >/dev/null 2>&1 || true
+          fi
+          echo "::error::gitleaks: real secret detected — Type-B hard-block. Rotate + remove from history; do not re-run."
+          exit 1
+
+      # Aggregate infra_error (install + scan). Distinguishes for downstream:
+      #   result=failure & infra_error=false -> Type-B leak;  =true -> Type-C crash.
+      - name: Aggregate infra_error
+        id: agg
+        if: always()
+        run: |
+          IE=false
+          [ "${{ steps.install.outputs.infra_error }}" = "true" ] && IE=true
+          [ "${{ steps.scan.outputs.infra_error }}" = "true" ] && IE=true
+          echo "infra_error=$IE" >> "$GITHUB_OUTPUT"
+          echo "gitleaks infra_error=$IE"
 
   # ---------------------------------------------------------------------------
   # workflow-safety — deterministic CI-surface denylist scan.
@@ -115,6 +231,8 @@ jobs:
       # ── HARD-BLOCK FLOOR ─────────────────────────────────────────────────
       # Absolute: secrets / CI-surface edits are NEVER auto-fixed by any model.
       # Exit 1 before any model call.
+      # A gh API blip is Type C ("couldn't determine changed files", not a finding)
+      # — gh pr view retried 2x via gh_retry.sh, then infra-escalated.
       - name: Hard-block floor check
         id: floor_check
         env:
@@ -136,10 +254,16 @@ jobs:
             FLOOR_REASON="${FLOOR_REASON:+$FLOOR_REASON, }workflow-safety=${{ needs.workflow-safety.result }}"
           fi
 
-          # 2. CI-surface edit detection (fail-closed on gh error)
+          # 2. CI-surface edit detection. A gh API blip is Type C ("couldn't
+          # determine changed files", not a finding) — retry 2x then infra-escalate.
           EDITS_CI=false
-          PR_FILES=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json files -q '.files[].path') \
-            || { echo "::error::gh pr view failed — cannot determine changed files; blocking."; exit 1; }
+          if ! PR_FILES=$(bash .github/scripts/gh_retry.sh --retries 2 --sleep 5 \
+                           -- gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json files -q '.files[].path'); then
+            echo "::error::gh pr view failed after retries — cannot determine changed files."
+            bash .github/scripts/gate_infra_escalate.sh --pr "$PR_NUMBER" --check "review (gh pr view)" \
+              --detail "gh pr view --json files failed (network/API blip) — couldn't determine changed files" || true
+            exit 1
+          fi
           if printf '%s\n' "$PR_FILES" | grep -Eq '^[.]github/(workflows|scripts)/'; then
             EDITS_CI=true
             FLOOR_BLOCKED=true
@@ -277,6 +401,8 @@ jobs:
               SONNET_RESIDUAL: <remaining issues or NONE>
 
       # ── FAIL-CLOSED ENFORCEMENT ──────────────────────────────────────────
+      # AUTH_FAIL and crash paths route through gate_infra_escalate.sh (Type C):
+      # distinct gate-infra-error label + deduped tracking issue + "couldn't verify" comment.
       - name: Enforce review actually ran
         if: always()
         env:
@@ -304,10 +430,11 @@ jobs:
             ROUTE_HUMAN) gh issue edit "$PR_NUMBER" --add-label needs-human-review \
                            --repo "$GITHUB_REPOSITORY" || true
                          echo "::error::review: needs human review (workflow-edit or incomplete review)." ; exit 1 ;;
-            AUTH_FAIL)   gh issue edit "$PR_NUMBER" --add-label needs-human-review \
-                           --repo "$GITHUB_REPOSITORY" || true
+            AUTH_FAIL)   bash .github/scripts/gate_infra_escalate.sh --pr "$PR_NUMBER" --check "review (Sonnet)" \
+                           --detail "reviewer AUTH FAILED (401) — CLAUDE_CODE_OAUTH_TOKEN invalid/expired" || true
                          echo "::error::review: AUTH FAILED — CLAUDE_CODE_OAUTH_TOKEN invalid/expired. Regenerate: run 'claude setup-token' then set it with printf '%s' <TOKEN> | gh secret set CLAUDE_CODE_OAUTH_TOKEN" ; exit 1 ;;
-            *)           gh issue edit "$PR_NUMBER" --add-label needs-human-review --repo "$GITHUB_REPOSITORY" || true
+            *)           bash .github/scripts/gate_infra_escalate.sh --pr "$PR_NUMBER" --check "review (Sonnet)" \
+                           --detail "reviewer could not run (no result / crash; token=$TOKEN)" || true
                          echo "::error::review: did not run or errored ($TOKEN)." ; exit 1 ;;
           esac
 
@@ -412,6 +539,7 @@ jobs:
 
       # ── HARD-BLOCK FLOOR ─────────────────────────────────────────────────
       # Absolute: same floor as Tier 1. Opus CANNOT override this.
+      # gh pr view calls wrapped in gh_retry.sh; persistent failure => gate_infra_escalate.
       - name: Hard-block floor check
         id: floor_check
         env:
@@ -440,10 +568,16 @@ jobs:
             FLOOR_REASON="${FLOOR_REASON:+$FLOOR_REASON, }review=$REVIEW_RESULT"
           fi
 
-          # CI-surface edit detection (fail-closed on gh error)
+          # CI-surface edit detection. A gh API blip is Type C ("couldn't
+          # determine changed files", not a finding) — retry 2x then infra-escalate.
           EDITS_CI=false
-          PR_FILES=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json files -q '.files[].path') \
-            || { echo "::error::gh pr view failed — cannot determine changed files; blocking."; exit 1; }
+          if ! PR_FILES=$(bash .github/scripts/gh_retry.sh --retries 2 --sleep 5 \
+                           -- gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json files -q '.files[].path'); then
+            echo "::error::gh pr view failed after retries — cannot determine changed files."
+            bash .github/scripts/gate_infra_escalate.sh --pr "$PR_NUMBER" --check "opus-gate (gh pr view)" \
+              --detail "gh pr view --json files failed (network/API blip) — couldn't determine changed files" || true
+            exit 1
+          fi
           if printf '%s\n' "$PR_FILES" | grep -Eq '^[.]github/(workflows|scripts)/'; then
             EDITS_CI=true
             FLOOR_BLOCKED=true
@@ -467,16 +601,23 @@ jobs:
       # Fail-closed default HIGH. DOCS allowlist: md/mdx/txt/images/LICENSE/docs/.
       # Any unknown file type => HIGH (same as workspace template).
       # Landing-specific HIGH triggers: js/ts/json/yml/yaml/sh/html/config files.
+      # Type C: a gh API blip means we couldn't classify the diff — retry 2x,
+      # then infra-escalate and fail-closed (never auto-pass the risk tier).
       - name: Check risk tier
         id: risk_tier
         if: steps.floor_check.conclusion == 'success'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -uo pipefail
           PR_NUMBER="${{ github.event.pull_request.number }}"
-          FILES=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json files -q '.files[].path') \
-            || { echo "::error::gh pr view failed — cannot determine risk tier; blocking."; exit 1; }
+          if ! FILES=$(bash .github/scripts/gh_retry.sh --retries 2 --sleep 5 \
+                        -- gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json files -q '.files[].path'); then
+            echo "::error::gh pr view failed after retries — cannot determine risk tier."
+            bash .github/scripts/gate_infra_escalate.sh --pr "$PR_NUMBER" --check "opus-gate risk-tier (gh pr view)" \
+              --detail "gh pr view --json files failed (network/API blip) — couldn't determine risk tier" || true
+            exit 1
+          fi
 
           # Fail-closed: default HIGH. A file is DOCS (low-risk) ONLY if it
           # matches the explicit docs allowlist. Any unknown/new file type => HIGH.
@@ -642,6 +783,8 @@ jobs:
               OPUS_GATE_VERDICT: FAIL
 
       # ── FAIL-CLOSED ENFORCEMENT ──────────────────────────────────────────
+      # AUTH_FAIL and crash paths route through gate_infra_escalate.sh (Type C):
+      # distinct gate-infra-error label + deduped tracking issue + "couldn't verify" comment.
       - name: Enforce Opus review actually ran
         if: steps.floor_check.conclusion == 'success' && steps.risk_tier.outputs.tier == 'high' && always()
         env:
@@ -663,10 +806,11 @@ jobs:
             ROUTE_HUMAN) gh issue edit "$PR_NUMBER" --add-label needs-human-review \
                            --repo "$GITHUB_REPOSITORY" || true
                          echo "::error::opus-gate: needs human review (workflow-edit or incomplete review)." ; exit 1 ;;
-            AUTH_FAIL)   gh issue edit "$PR_NUMBER" --add-label needs-human-review \
-                           --repo "$GITHUB_REPOSITORY" || true
+            AUTH_FAIL)   bash .github/scripts/gate_infra_escalate.sh --pr "$PR_NUMBER" --check "opus-gate (Opus)" \
+                           --detail "Opus reviewer AUTH FAILED (401) — CLAUDE_CODE_OAUTH_TOKEN invalid/expired" || true
                          echo "::error::opus-gate AUTH FAILED — CLAUDE_CODE_OAUTH_TOKEN invalid/expired. Regenerate: run 'claude setup-token' then set it with printf '%s' <TOKEN> | gh secret set CLAUDE_CODE_OAUTH_TOKEN" ; exit 1 ;;
-            *)           gh issue edit "$PR_NUMBER" --add-label needs-human-review --repo "$GITHUB_REPOSITORY" || true
+            *)           bash .github/scripts/gate_infra_escalate.sh --pr "$PR_NUMBER" --check "opus-gate (Opus)" \
+                           --detail "Opus reviewer could not run (no result / crash; token=$TOKEN)" || true
                          echo "::error::opus-gate: did not run or errored ($TOKEN)." ; exit 1 ;;
           esac
 
