@@ -112,12 +112,15 @@ jobs:
                 GL_TARBALL="gitleaks_${GL_VERSION}_linux_x64.tar.gz"
                 GL_SUMS="gitleaks_${GL_VERSION}_checksums.txt"
                 mkdir -p "${GL_DIR}"
-                cd /tmp
-                curl -fsSL "${GL_BASE}/${GL_TARBALL}" -o "${GL_TARBALL}"
-                curl -fsSL "${GL_BASE}/${GL_SUMS}"    -o "${GL_SUMS}"
+                # Download into the per-job RUNNER_TEMP (always writable, unique per
+                # job) instead of shared /tmp — avoids curl(23) write failures from a
+                # stale/foreign-owned /tmp/gitleaks_*.tar.gz on the persistent runner.
+                DL="${RUNNER_TEMP:-/tmp}"
+                curl -fsSL "${GL_BASE}/${GL_TARBALL}" -o "${DL}/${GL_TARBALL}"
+                curl -fsSL "${GL_BASE}/${GL_SUMS}"    -o "${DL}/${GL_SUMS}"
                 # single unified checksums file lists all assets; verify only our tarball
-                grep "  ${GL_TARBALL}\$" "${GL_SUMS}" | sha256sum -c -
-                tar --overwrite -xzf "${GL_TARBALL}" -C "${GL_DIR}" gitleaks
+                ( cd "${DL}" && grep "  ${GL_TARBALL}\$" "${GL_SUMS}" | sha256sum -c - )
+                tar --overwrite -xzf "${DL}/${GL_TARBALL}" -C "${GL_DIR}" gitleaks
                 chmod +x "${GL_BIN}"
               fi
               # Make gitleaks available to subsequent steps (e.g. the scan step) on PATH.
