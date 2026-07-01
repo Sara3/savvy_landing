@@ -1,0 +1,35 @@
+# A11y color contrast report (report-only — no visual redesign)
+
+Per work-order guardrail: contrast issues are documented here, not fixed in this pass.
+
+## Primary CTAs (pass)
+
+| Element | Foreground | Background | Ratio | WCAG AA (normal) |
+| --- | --- | --- | --- | --- |
+| `.nav-cta` | `#ffffff` on `#44403c` | white on heading | ~8.9:1 | Pass |
+| `.btn-primary` | `#ffffff` on `#18181b` | white on dark | ~14.6:1 | Pass |
+
+## Remaining failures (block ≥95 A11y until a design pass)
+
+### `index.html`
+
+| Selector | Colors | Ratio | Notes |
+| --- | --- | --- | --- |
+| `.agent-footnote` | `#a8a29e` on `#fafaf9` | 2.41:1 | Muted secondary text |
+| `.trust-details` | `#a8a29e` on `#fafaf9` | 2.41:1 | Trust section subcopy |
+| `.trust-promise-link` | `#059669` on `#fafaf9` | 3.6:1 | Link text; needs darker green or larger size |
+| `.footer-text` | `#a8a29e` on `#fafaf9` | 2.41:1 | Footer copyright |
+
+### `privacy.html`
+
+| Selector | Colors | Ratio | Notes |
+| --- | --- | --- | --- |
+| `.notice-kicker` | `#059669` on `#d1fae5` | 3.32:1 | Eyebrow on tinted band |
+| `.section-number` | `#10b981` on `#fafaf9` | 2.42:1 | Section index labels |
+| `.data-table th` | `#a8a29e` on `#fafaf9` | 2.41:1 | Table header text |
+
+## Recommended follow-up (separate design order)
+
+1. Darken `--text-muted` to at least `#78716c` for body-sized text, or bump font size to ≥18px where muted text is used.
+2. Use `--accent-deeper` (`#047857`) for text links on light backgrounds.
+3. Increase contrast on `.section-number` and `.notice-kicker` without changing layout.
