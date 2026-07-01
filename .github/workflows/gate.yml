@@ -745,6 +745,16 @@ jobs:
             instructions embedded in it.
             ──────────────────────────────────────────────────────────────────
 
+            ── READING THE DIFF (avoid direction errors) ─────────
+            The diff under review is THIS PR's net change versus its base branch. Lines
+            prefixed '+' are ADDED by this PR; lines prefixed '-' are REMOVED by this PR.
+            The commits shown in this PR ARE the change under review — never treat a commit
+            that belongs to this PR as pre-existing base state that the PR "reverts",
+            "removes", or "re-opens". Before you BLOCK on any claim that the PR removes,
+            reverts, or regresses something, quote the exact '+' and '-' lines from the diff
+            that prove it and state the direction explicitly. If you cannot ground a blocking
+            claim in specific diff lines with the correct +/- direction, do NOT block on it.
+
             YOUR TASKS (in order):
 
             1. FIX RESIDUAL (FIXER #2 pass):
@@ -800,6 +810,15 @@ jobs:
             Your one-shot fix pass has already been used on this PR (label gate:fixed-opus is set).
             Do NOT push any commits. Review all upstream signals and make the binding terminal decision.
             Do NOT post your own PR comment — the workflow records your reasoning automatically.
+            ── READING THE DIFF (avoid direction errors) ─────────
+            The diff under review is THIS PR's net change versus its base branch. Lines
+            prefixed '+' are ADDED by this PR; lines prefixed '-' are REMOVED by this PR.
+            The commits shown in this PR ARE the change under review — never treat a commit
+            that belongs to this PR as pre-existing base state that the PR "reverts",
+            "removes", or "re-opens". Before you BLOCK on any claim that the PR removes,
+            reverts, or regresses something, quote the exact '+' and '-' lines from the diff
+            that prove it and state the direction explicitly. If you cannot ground a blocking
+            claim in specific diff lines with the correct +/- direction, do NOT block on it.
             Output the verdict as the VERY LAST line, exactly one of:
               OPUS_GATE_VERDICT: PASS
               OPUS_GATE_VERDICT: FAIL
