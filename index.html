@@ -4,10 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Savvy — You Have the Cards. You're Just Not Using Them.</title>
+    <meta name="description" content="Savvy's AI agents track every credit card perk, credit, and deadline across your cards — so nothing you already pay for goes unused. Free for 30 days.">
+    <link rel="canonical" href="https://withsavvy.ai/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Savvy">
+    <meta property="og:title" content="Savvy — You Have the Cards. You're Just Not Using Them.">
+    <meta property="og:description" content="Savvy's AI agents track every credit card perk, credit, and deadline across your cards — so nothing you already pay for goes unused.">
+    <meta property="og:url" content="https://withsavvy.ai/">
+    <meta property="og:image" content="https://withsavvy.ai/Assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="800">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Savvy — You Have the Cards. You're Just Not Using Them.">
+    <meta name="twitter:description" content="Savvy's AI agents track every credit card perk, credit, and deadline across your cards — so nothing you already pay for goes unused.">
+    <meta name="twitter:image" content="https://withsavvy.ai/Assets/og-image.jpg">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%2310b981'%20stroke-width='2.5'%3E%3Cpath%20d='M12%202L2%207l10%205%2010-5-10-5zM2%2017l10%205%2010-5M2%2012l10%205%2010-5'/%3E%3C/svg%3E">
+    <link rel="preload" as="image" href="./Assets/hero16.avif">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=DM+Serif+Display:ital@0;1&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=DM+Serif+Display:ital@0;1&display=swap"></noscript>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "name": "Savvy Financial Technologies, Inc.",
+                "url": "https://withsavvy.ai/"
+            },
+            {
+                "@type": "Product",
+                "name": "Savvy",
+                "description": "AI agents that track credit card perks, credits, and deadlines so nothing you already pay for goes unused.",
+                "brand": { "@type": "Brand", "name": "Savvy" },
+                "category": "Financial Software",
+                "url": "https://withsavvy.ai/",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD",
+                    "description": "Free for 30 days",
+                    "url": "https://app.withsavvy.ai/#sign-up"
+                }
+            }
+        ]
+    }
+    </script>
     <style>
         :root {
             --bg-primary: #fafaf9;
@@ -54,6 +97,12 @@
         }
         .serif { font-family: 'DM Serif Display', Georgia, serif; }
 
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         /* ─── NAV ─── */
         .top-nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -63,7 +112,7 @@
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-light); isolation: isolate;
         }
-        .logo { font-size: 1.4rem; font-weight: 700; color: var(--text-heading); display: flex; align-items: center; gap: 0.6rem; }
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--text-heading); display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
         .logo-icon {
             width: 36px; height: 36px; background: var(--accent);
             border-radius: 10px; display: flex; align-items: center; justify-content: center;
@@ -283,7 +332,7 @@
         .agent-card.tracked .agent-action { background: var(--info-light); color: var(--info-text); }
         .agent-card.savings .agent-action { background: var(--purple-light); color: var(--purple); }
         .agent-card.gift .agent-action { background: var(--warning-light); color: var(--warning-text); }
-        .agent-footnote { text-align: center; margin-top: 1.75rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+        .agent-footnote { text-align: center; margin-top: 1.75rem; font-size: 0.85rem; color: var(--text-secondary); font-style: italic; }
 
         /* ─── SOCIAL PROOF ─── */
         .proof-section { padding: 4.5rem 2rem; background: var(--bg-white); border-top: 1px solid var(--border-light); }
@@ -307,12 +356,12 @@
         .trust-section { padding: 3rem 2rem; background: var(--bg-primary); text-align: center; border-top: 1px solid var(--border-light); }
         .trust-inner { max-width: 600px; margin: 0 auto; }
         .trust-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-heading); }
-        .trust-details { font-size: 0.85rem; color: var(--text-muted); }
+        .trust-details { font-size: 0.85rem; color: var(--text-secondary); }
         .trust-promise { margin-top: 1.75rem; padding-top: 1.75rem; border-top: 1px solid var(--border); }
         .trust-promise-head { font-size: 1.25rem; font-weight: 700; color: var(--text-heading); letter-spacing: -0.01em; margin-bottom: 0.4rem; }
         .trust-promise-head .serif { font-weight: 400; font-style: italic; }
         .trust-promise-sub { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; max-width: 520px; margin: 0 auto 0.9rem; }
-        .trust-promise-link { font-size: 0.875rem; font-weight: 600; color: var(--accent-dark); text-decoration: none; }
+        .trust-promise-link { font-size: 0.875rem; font-weight: 600; color: var(--accent-deeper); text-decoration: none; }
         .trust-promise-link:hover { text-decoration: underline; }
 
         /* ─── CTA ─── */
@@ -344,7 +393,7 @@
         /* ─── FOOTER ─── */
         footer { padding: 2rem; text-align: center; background: var(--bg-primary); border-top: 1px solid var(--border-light); }
         .footer-logo { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-heading); }
-        .footer-text { font-size: 0.8rem; color: var(--text-muted); }
+        .footer-text { font-size: 0.8rem; color: var(--text-secondary); }
         .footer-links { margin-top: 0.75rem; display: flex; justify-content: center; gap: 1.25rem; }
         .footer-links a { font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; }
         .footer-links a:hover { color: var(--accent); }
@@ -373,14 +422,15 @@
 <body>
 
     <!-- NAV -->
-    <nav class="top-nav">
-        <div class="logo">
-            <div class="logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    <nav class="top-nav" aria-label="Primary">
+        <a href="/" class="logo">
+            <div class="logo-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
             Savvy
-        </div>
+        </a>
         <a href="https://app.withsavvy.ai/#sign-up" class="nav-cta">Get Started</a>
     </nav>
 
+    <main id="main-content">
     <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
@@ -605,6 +655,7 @@
         </a>
         <p class="cta-note" style="margin-top: 0.5rem;">No credit card required · Cancel anytime</p>
     </section>
+    </main>
 
     <!-- FOOTER -->
     <footer>
